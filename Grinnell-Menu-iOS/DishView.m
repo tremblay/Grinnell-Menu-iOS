@@ -13,9 +13,8 @@
 @implementation DishView
 
 - (IBAction)addToTray:(id)sender{
-    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-  if (mainDelegate.trayDishes.count == 0) {
+    if (mainDelegate.trayDishes.count == 0) {
       mainDelegate.trayDishes = [[NSMutableArray alloc] initWithObjects: self.title, nil];
   }
  else
@@ -26,7 +25,8 @@
 
 - (IBAction)removeFromTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [mainDelegate.trayDishes removeObject:self.title]; 
+   NSInteger dishIndex = [mainDelegate.trayDishes indexOfObject:self.title];
+   [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
 }
 
 - (IBAction)showInfo:(id)sender
@@ -67,6 +67,7 @@
     [super viewWillAppear:animated];
     
 }
+
 - (void)viewDidLoad
 {
     //Navigate to Main Menu

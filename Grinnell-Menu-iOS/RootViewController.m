@@ -11,7 +11,7 @@
 #import "Tray.h"
 
 @implementation RootViewController
-@synthesize alert;
+//@synthesize alert;
 
 - (void) venueViewDidFinish:(VenueView *)controller
 {
@@ -27,7 +27,6 @@
 						  cancelButtonTitle:@"Cancel" 
                           otherButtonTitles:@"Breakfast", @"Lunch", @"Dinner", nil
                          ];
-    self.alert = meal;
     [meal show];
     [meal release];
 }

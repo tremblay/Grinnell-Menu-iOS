@@ -13,7 +13,7 @@
 
 @implementation Tray
 
-@synthesize alert, newTableView;
+@synthesize newTableView;
 
 - (IBAction) editTable:(id)sender {
     if(self.editing){
@@ -41,7 +41,6 @@
                          cancelButtonTitle:@"Clear" 
                          otherButtonTitles:@"Cancel", nil
                          ];
-    self.alert = clear;
     [clear show];
     [clear release];
 }
@@ -65,6 +64,7 @@
 
 - (void)dealloc
 {
+    [newTableView release];
     [super dealloc];
 }
 
@@ -165,10 +165,7 @@
     // Navigation logic may go here. Create and push another view controller.
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.dishName = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
-    //[self.navigationController popToViewController:dishView animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
-	//[self.navigationController pushViewController:dishView animated:YES];
-    //[dishView release];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -186,7 +183,7 @@
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+    }
 }
 
 @end

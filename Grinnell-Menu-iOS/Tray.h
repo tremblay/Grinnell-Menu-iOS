@@ -8,12 +8,10 @@
 
 @interface Tray : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    UIAlertView *alert;
     UITableView *newTableView;
 }
 - (IBAction)editTable:(id)sender;
 - (IBAction)clearTray:(id)sender;
-@property(nonatomic, retain) UIAlertView *alert;
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
 
 @end

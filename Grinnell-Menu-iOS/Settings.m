@@ -17,6 +17,7 @@
 
 - (void)dealloc
 {
+    [filters release];
     [super dealloc];
 }
 
@@ -26,6 +27,12 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - View lifecycle

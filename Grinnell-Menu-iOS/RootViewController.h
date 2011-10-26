@@ -12,11 +12,9 @@
 @interface RootViewController : UIViewController <UIAlertViewDelegate>
 {
     IBOutlet UIDatePicker *datePicker;
-    UIAlertView *alert;
 }
 
 - (IBAction)showVenues:(id)sender;
 
-@property(nonatomic, retain) UIAlertView *alert;
 
 @end

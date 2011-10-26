@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DishesView : UIViewController {
+    NSMutableArray *venueDishes;
 }
 
 - (IBAction)showInfo:(id)sender;
