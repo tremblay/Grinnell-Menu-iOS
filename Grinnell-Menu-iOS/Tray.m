@@ -91,7 +91,7 @@
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
     [self.navigationItem setRightBarButtonItem:editButton];
     //toVenueView
-    if ([mainDelegate.fromDishView isEqualToString:@"Yes"])
+    if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
     {
         UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
         [self.navigationItem setLeftBarButtonItem:toVenueViewButton]; 
@@ -174,19 +174,21 @@
     // Navigation logic may go here. Create and push another view controller.
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.dishName = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
-    /*
-    //ALTERNATIVE
-     //to implement uncomment here, comment out all references to toVenueView and change yes no features
-    if ([mainDelegate.fromDishView isEqualToString:@"Yes"])
+
+    if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
     {
+        mainDelegate.navStyle = @"popped";
         [self.navigationController popViewControllerAnimated:YES];
-    }*/
-    
+    }
+    else
+    {
+        mainDelegate.navStyle = @"pushed_from_tray";
         DishView *dishView = 
         [[DishView alloc] initWithNibName:@"DishView" bundle:nil];
         [self.navigationController pushViewController:dishView animated:YES];
         [dishView release];
-  }
+    }
+}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.

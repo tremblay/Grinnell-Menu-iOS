@@ -38,14 +38,17 @@
 - (IBAction)showTray:(id)sender
 {    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    mainDelegate.fromDishView = @"Yes";
+    mainDelegate.fromDishView = self.title;
     [mainDelegate flipToTray];
 }
 
 - (IBAction)backToMainMenu:(id)sender{
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
+- (IBAction)toVenueView:(id)sender
+{
+    [self.navigationController popToViewController:    [self.navigationController.viewControllers objectAtIndex:1] animated:YES]; 
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -70,6 +73,13 @@
 
 - (void)viewDidLoad
 {
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([mainDelegate.navStyle isEqualToString:@"pushed_from_tray"])
+    {
+        UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
+        [self.navigationItem setLeftBarButtonItem:toVenueViewButton]; 
+    }
+
     //Navigate to Main Menu
     UIBarButtonItem *toMainMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Main Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(backToMainMenu:)];
     [self.navigationItem setRightBarButtonItem:toMainMenuButton];    

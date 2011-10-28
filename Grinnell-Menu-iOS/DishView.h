@@ -13,4 +13,5 @@
 - (IBAction)addToTray:(id)sender;
 - (IBAction)removeFromTray:(id)sender;
 - (IBAction)backToMainMenu:(id)sender;
+- (IBAction)toVenueView:(id)sender;
 @end

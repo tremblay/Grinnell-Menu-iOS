@@ -167,6 +167,8 @@ titleForHeaderInSection:(NSInteger)section
 
 	Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.dishName = [dishes objectAtIndex:theRow];
+    mainDelegate.navStyle = @"pushed_from_venue";
+
     DishView *dishView = 
 	[[DishView alloc] initWithNibName:@"DishView" bundle:nil];
 	[self.navigationController pushViewController:dishView animated:YES];
