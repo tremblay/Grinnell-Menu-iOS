@@ -198,8 +198,8 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="338420859"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC42NDI4NTcxNDI5IDAgMC4wMDY5NzU2NDY5MzEAA</bytes>
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
@@ -280,10 +280,10 @@
 						<reference key="object" ref="770739462"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="37500359"/>
 							<reference ref="152074695"/>
 							<reference ref="634934965"/>
 							<reference ref="338420859"/>
+							<reference ref="37500359"/>
 							<reference ref="1017849158"/>
 						</object>
 						<reference key="parent" ref="0"/>

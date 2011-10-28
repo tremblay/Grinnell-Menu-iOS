@@ -35,10 +35,10 @@
     [mainDelegate flipToSettings];
 }
 
-
 - (IBAction)showTray:(id)sender
 {    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    mainDelegate.fromDishView = @"Yes";
     [mainDelegate flipToTray];
 }
 
@@ -73,7 +73,6 @@
     //Navigate to Main Menu
     UIBarButtonItem *toMainMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Main Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(backToMainMenu:)];
     [self.navigationItem setRightBarButtonItem:toMainMenuButton];    
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

@@ -13,5 +13,4 @@
 - (IBAction)addToTray:(id)sender;
 - (IBAction)removeFromTray:(id)sender;
 - (IBAction)backToMainMenu:(id)sender;
-
 @end

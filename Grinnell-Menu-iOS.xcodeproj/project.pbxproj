@@ -27,8 +27,6 @@
 		E1A0C565145324490072BE76 /* Grinnell_Menu_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C564145324490072BE76 /* Grinnell_Menu_iOSTests.m */; };
 		E1A0C579145326010072BE76 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C577145326010072BE76 /* VenueView.m */; };
 		E1A0C57A145326010072BE76 /* VenueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C578145326010072BE76 /* VenueView.xib */; };
-		E1A0C5871453270D0072BE76 /* DishesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C57C1453270B0072BE76 /* DishesView.m */; };
-		E1A0C5881453270D0072BE76 /* DishesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C57D1453270B0072BE76 /* DishesView.xib */; };
 		E1A0C5891453270D0072BE76 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C57F1453270B0072BE76 /* Settings.m */; };
 		E1A0C58A1453270D0072BE76 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5801453270B0072BE76 /* Settings.xib */; };
 		E1A0C58B1453270D0072BE76 /* DishView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C5821453270C0072BE76 /* DishView.m */; };
@@ -73,9 +71,6 @@
 		E1A0C576145326010072BE76 /* VenueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueView.h; sourceTree = "<group>"; };
 		E1A0C577145326010072BE76 /* VenueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueView.m; sourceTree = "<group>"; };
 		E1A0C578145326010072BE76 /* VenueView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VenueView.xib; sourceTree = "<group>"; };
-		E1A0C57B1453270A0072BE76 /* DishesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishesView.h; sourceTree = "<group>"; };
-		E1A0C57C1453270B0072BE76 /* DishesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishesView.m; sourceTree = "<group>"; };
-		E1A0C57D1453270B0072BE76 /* DishesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DishesView.xib; sourceTree = "<group>"; };
 		E1A0C57E1453270B0072BE76 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		E1A0C57F1453270B0072BE76 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		E1A0C5801453270B0072BE76 /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
@@ -155,9 +150,6 @@
 				E1A0C576145326010072BE76 /* VenueView.h */,
 				E1A0C577145326010072BE76 /* VenueView.m */,
 				E1A0C578145326010072BE76 /* VenueView.xib */,
-				E1A0C57B1453270A0072BE76 /* DishesView.h */,
-				E1A0C57C1453270B0072BE76 /* DishesView.m */,
-				E1A0C57D1453270B0072BE76 /* DishesView.xib */,
 				E1A0C57E1453270B0072BE76 /* Settings.h */,
 				E1A0C57F1453270B0072BE76 /* Settings.m */,
 				E1A0C5801453270B0072BE76 /* Settings.xib */,
@@ -275,7 +267,6 @@
 				E1A0C548145324480072BE76 /* MainWindow.xib in Resources */,
 				E1A0C54E145324480072BE76 /* RootViewController.xib in Resources */,
 				E1A0C57A145326010072BE76 /* VenueView.xib in Resources */,
-				E1A0C5881453270D0072BE76 /* DishesView.xib in Resources */,
 				E1A0C58A1453270D0072BE76 /* Settings.xib in Resources */,
 				E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */,
 				E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */,
@@ -319,7 +310,6 @@
 				E1A0C545145324470072BE76 /* Grinnell_Menu_iOS.xcdatamodeld in Sources */,
 				E1A0C54B145324480072BE76 /* RootViewController.m in Sources */,
 				E1A0C579145326010072BE76 /* VenueView.m in Sources */,
-				E1A0C5871453270D0072BE76 /* DishesView.m in Sources */,
 				E1A0C5891453270D0072BE76 /* Settings.m in Sources */,
 				E1A0C58B1453270D0072BE76 /* DishView.m in Sources */,
 				E1A0C58D1453270D0072BE76 /* Tray.m in Sources */,
@@ -503,6 +493,7 @@
 				E1A0C56A145324490072BE76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1A0C56B145324490072BE76 /* Build configuration list for PBXNativeTarget "Grinnell-Menu-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +502,7 @@
 				E1A0C56D145324490072BE76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

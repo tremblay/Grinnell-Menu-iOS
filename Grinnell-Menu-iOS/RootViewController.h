@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface RootViewController : UIViewController <UIAlertViewDelegate>
+@interface RootViewController : UIViewController
 {
     IBOutlet UIDatePicker *datePicker;
 }

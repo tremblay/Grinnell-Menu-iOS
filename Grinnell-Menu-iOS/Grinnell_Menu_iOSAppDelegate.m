@@ -14,7 +14,7 @@
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize trayDishes, dishName;
+@synthesize trayDishes, dishName, fromDishView;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -36,8 +36,8 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 
  
-    // Override point for customization after app launch    
-	
+    // Override point for customization after app launch
+
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 }
@@ -56,6 +56,7 @@
     [dishName release];
 	[navigationController release];
 	[window release];
+    [fromDishView release];
 	[super dealloc];
 }
 

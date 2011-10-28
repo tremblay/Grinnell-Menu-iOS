@@ -11,8 +11,8 @@
 
 @interface VenueView : UIViewController {
     NSArray *venues;
+    NSArray *dishes;
 }
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showTray:(id)sender;
-
 @end
