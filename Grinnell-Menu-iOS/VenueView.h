@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Dish.h"
 
 @interface VenueView : UIViewController {
     NSArray *venues;
-    NSArray *dishes;
+    NSMutableArray *dishes;    
 }
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showTray:(id)sender;
+-(void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish;
+
+
+
 @end

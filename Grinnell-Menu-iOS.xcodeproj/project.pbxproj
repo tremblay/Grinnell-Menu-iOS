@@ -33,6 +33,9 @@
 		E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5831453270C0072BE76 /* DishView.xib */; };
 		E1A0C58D1453270D0072BE76 /* Tray.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C5851453270C0072BE76 /* Tray.m */; };
 		E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5861453270C0072BE76 /* Tray.xib */; };
+		E1DBA2FC145C84EA0099E8CE /* checkmark_blank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */; };
+		E1DBA2FD145C84EA0099E8CE /* checkmark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1DBA2FB145C84EA0099E8CE /* checkmark.jpg */; };
+		E1DBA300145C922C0099E8CE /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DBA2FF145C922B0099E8CE /* Dish.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,10 @@
 		E1A0C5841453270C0072BE76 /* Tray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tray.h; sourceTree = "<group>"; };
 		E1A0C5851453270C0072BE76 /* Tray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tray.m; sourceTree = "<group>"; };
 		E1A0C5861453270C0072BE76 /* Tray.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tray.xib; sourceTree = "<group>"; };
+		E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checkmark_blank.jpg; sourceTree = "<group>"; };
+		E1DBA2FB145C84EA0099E8CE /* checkmark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checkmark.jpg; sourceTree = "<group>"; };
+		E1DBA2FE145C922A0099E8CE /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		E1DBA2FF145C922B0099E8CE /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +154,13 @@
 				E1A0C549145324480072BE76 /* RootViewController.h */,
 				E1A0C54A145324480072BE76 /* RootViewController.m */,
 				E1A0C54C145324480072BE76 /* RootViewController.xib */,
+				E1DBA2FE145C922A0099E8CE /* Dish.h */,
+				E1DBA2FF145C922B0099E8CE /* Dish.m */,
 				E1A0C576145326010072BE76 /* VenueView.h */,
 				E1A0C577145326010072BE76 /* VenueView.m */,
 				E1A0C578145326010072BE76 /* VenueView.xib */,
+				E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */,
+				E1DBA2FB145C84EA0099E8CE /* checkmark.jpg */,
 				E1A0C57E1453270B0072BE76 /* Settings.h */,
 				E1A0C57F1453270B0072BE76 /* Settings.m */,
 				E1A0C5801453270B0072BE76 /* Settings.xib */,
@@ -270,6 +281,8 @@
 				E1A0C58A1453270D0072BE76 /* Settings.xib in Resources */,
 				E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */,
 				E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */,
+				E1DBA2FC145C84EA0099E8CE /* checkmark_blank.jpg in Resources */,
+				E1DBA2FD145C84EA0099E8CE /* checkmark.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +326,7 @@
 				E1A0C5891453270D0072BE76 /* Settings.m in Sources */,
 				E1A0C58B1453270D0072BE76 /* DishView.m in Sources */,
 				E1A0C58D1453270D0072BE76 /* Tray.m in Sources */,
+				E1DBA300145C922C0099E8CE /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

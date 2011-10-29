@@ -9,8 +9,10 @@
 #import "VenueView.h"
 #import "DishView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
+#import "Dish.h"
 
-@implementation VenueView
+@implementation VenueView 
+
 
 - (IBAction)showTray:(id)sender
 {    
@@ -27,11 +29,46 @@
 
 
 - (void)viewDidLoad {    
+    [super viewDidLoad];
     venues = [[NSArray alloc] initWithObjects:@"Honor Grill", @"8th Ave. Deli", @"Wok", @"Desserts", @"Pizza", @"Pasta", @"Plat du Jour", @"Vegan Bar", nil];
-    dishes = [[NSArray alloc] initWithObjects:@"dish1", @"dish2", @"dish3", @"dish4", @"dish5", @"dish6", @"dish7", @"dish8", @"dish9", @"dish10", @"dish11", @"dish12", @"dish13", @"dish14", @"dish15", @"dish16", @"dish17", @"dish18", @"dish19", @"dish20", @"dish21", nil];
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    mainDelegate.trayDishes = [[NSMutableArray alloc] init];
+    
+    dishes = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    Dish *dish;
+    dish = [[Dish alloc] init];
+    dish.name = @"dish1";
+    dish.isChecked = NO;
+    dish.venue = @"Honor Grill";
+    [dishes addObject:dish];
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish2";
+    dish.isChecked = NO;
+    dish.venue = @"Honor Grill";
+    [dishes addObject:dish];
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish3";
+    dish.isChecked = NO;
+    dish.venue = @"Honor Grill";
+    [dishes addObject:dish];
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish4";
+    dish.isChecked = NO;
+    dish.venue = @"Desserts";
+    [dishes addObject:dish];
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish5";
+    dish.isChecked = NO;
+    dish.venue = @"Desserts";
+    [dishes addObject:dish];
+    
     self.title = @"Venues";
     
-    [super viewDidLoad];
 }
 
 
@@ -78,14 +115,15 @@ titleForHeaderInSection:(NSInteger)section
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section
 {
+    //FIX THIS
 	if ( section == 0 ) return 3;
-	if ( section == 1 ) return 3;
-	if ( section == 2 ) return 3;
-	if ( section == 3 ) return 3;
-	if ( section == 4 ) return 3;
-	if ( section == 5 ) return 2;
-    if ( section == 6 ) return 2;
-    if ( section == 7 ) return 2;
+	if ( section == 1 ) return 0;
+	if ( section == 2 ) return 0;
+	if ( section == 3 ) return 2;
+	if ( section == 4 ) return 0;
+	if ( section == 5 ) return 0;
+    if ( section == 6 ) return 0;
+    if ( section == 7 ) return 0;
 	return 0;
 }
 
@@ -99,28 +137,27 @@ titleForHeaderInSection:(NSInteger)section
     }
     
     // Configure the cell...
+    //FIX THIS
     int theRow = indexPath.row;
 	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 6;
-	if ( indexPath.section == 3 ) theRow += 9;
-	if ( indexPath.section == 4 ) theRow += 12;
-	if ( indexPath.section == 5 ) theRow += 15;
-    if ( indexPath.section == 6 ) theRow += 17;
-	if ( indexPath.section == 7 ) theRow += 19;
+	if ( indexPath.section == 2 ) theRow += 3;
+	if ( indexPath.section == 3 ) theRow += 3;
+	if ( indexPath.section == 4 ) theRow += 3;
+	if ( indexPath.section == 5 ) theRow += 5;
+    if ( indexPath.section == 6 ) theRow += 5;
+	if ( indexPath.section == 7 ) theRow += 5;
 
-    cell.textLabel.text = [dishes objectAtIndex:theRow];
-    /* 
-     //Other options:
-     // retrieve an image
-     NSString *imagefile = [[NSBundle mainBundle] 
-     pathForResource:@"cellimage" ofType:@"png"];
-     UIImage *ui = [[UIImage alloc] initWithContentsOfFile:imagefile];
-     //set the image on the table cell
-     cell.imageView.image = ui;
-     
-     // set the subtitle text
-     cell.detailTextLabel.text = @"Subtitle contents go here";
-     */
+    Dish *dish = [dishes objectAtIndex:theRow];
+    cell.textLabel.text = dish.name;
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if([mainDelegate.trayDishes containsObject:cell.textLabel]){
+        dish.isChecked = YES;
+    }
+    else{
+        dish.isChecked = NO;
+    }
+    
+    [self configureCheckmarkForCell:cell withDish:dish];
      // accessory type
      cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
      
@@ -128,45 +165,70 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 
+-(void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish
+{
+    UIImage *checkmark = [UIImage imageNamed:@"checkmark.jpg"];
+    UIImage *checkmark_blank = [UIImage imageNamed:@"checkmark_blank.jpg"];
+    if (dish.isChecked) {
+        cell.imageView.image = checkmark;
+    }
+    else{
+        cell.imageView.image = checkmark_blank;
+    }
+}
+
+
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    // Configure the cell...
+    //FIX THIS
     int theRow = indexPath.row;
 	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 6;
-	if ( indexPath.section == 3 ) theRow += 9;
-	if ( indexPath.section == 4 ) theRow += 12;
-	if ( indexPath.section == 5 ) theRow += 15;
-    if ( indexPath.section == 6 ) theRow += 17;
-	if ( indexPath.section == 7 ) theRow += 19;
+	if ( indexPath.section == 2 ) theRow += 3;
+	if ( indexPath.section == 3 ) theRow += 3;
+	if ( indexPath.section == 4 ) theRow += 3;
+	if ( indexPath.section == 5 ) theRow += 5;
+    if ( indexPath.section == 6 ) theRow += 5;
+	if ( indexPath.section == 7 ) theRow += 5;
+
+    Dish *dish = [dishes objectAtIndex:theRow];
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (mainDelegate.trayDishes.count == 0) {
-        mainDelegate.trayDishes = [[NSMutableArray alloc] initWithObjects: [dishes objectAtIndex:theRow], nil];
-    }
-    else
+    [mainDelegate.trayDishes addObject:dish.name];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (!dish.isChecked)
     {
-        [mainDelegate.trayDishes addObject: [dishes objectAtIndex:theRow]]; 
+        dish.isChecked = YES;
+        [self configureCheckmarkForCell:cell withDish:dish];
     }
 }
 
+- (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+    UIImage *checkmark = [UIImage imageNamed:@"checkmark.jpg"];
+    cell.imageView.image = checkmark;
+}
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    // Configure the cell...
+    //FIX THIS
     int theRow = indexPath.row;
 	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 6;
-	if ( indexPath.section == 3 ) theRow += 9;
-	if ( indexPath.section == 4 ) theRow += 12;
-	if ( indexPath.section == 5 ) theRow += 15;
-    if ( indexPath.section == 6 ) theRow += 17;
-	if ( indexPath.section == 7 ) theRow += 19;
+	if ( indexPath.section == 2 ) theRow += 3;
+	if ( indexPath.section == 3 ) theRow += 3;
+	if ( indexPath.section == 4 ) theRow += 3;
+	if ( indexPath.section == 5 ) theRow += 5;
+    if ( indexPath.section == 6 ) theRow += 5;
+	if ( indexPath.section == 7 ) theRow += 5;
     
 
 	Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    mainDelegate.dishName = [dishes objectAtIndex:theRow];
+    Dish *dish = [dishes objectAtIndex:theRow];
+    mainDelegate.dishName = dish.name;
     mainDelegate.navStyle = @"pushed_from_venue";
 
     DishView *dishView = 
@@ -181,5 +243,6 @@ titleForHeaderInSection:(NSInteger)section
     [dishes release];
     [super dealloc];
 }
+
 
 @end

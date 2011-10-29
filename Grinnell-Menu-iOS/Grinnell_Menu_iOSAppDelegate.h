@@ -9,20 +9,20 @@
 @interface Grinnell_Menu_iOSAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
-    NSMutableArray *trayDishes;
     NSString *dishName;
     NSString *navStyle;
     NSString *fromDishView;
+    NSMutableArray *trayDishes;
 }
 
 - (void) flipToSettings;
 - (void) flipToTray;
 
-@property (nonatomic, retain) NSMutableArray *trayDishes;
 @property (nonatomic, retain) NSString *dishName;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) NSString *navStyle;
 @property (nonatomic, retain) NSString *fromDishView;
+@property (nonatomic, retain) NSMutableArray *trayDishes;
 
 @end

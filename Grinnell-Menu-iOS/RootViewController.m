@@ -59,6 +59,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     NSDate *now = [[NSDate alloc] init];
     [datePicker setDate:now animated:YES];
+  //  [datePicker setMaximumDate:<#(NSDate *)#>];
+  //  [datePicker setMinimumDate:<#(NSDate *)#>];
     [now release];
 }
 

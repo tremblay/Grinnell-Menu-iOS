@@ -14,19 +14,13 @@
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (mainDelegate.trayDishes.count == 0) {
-      mainDelegate.trayDishes = [[NSMutableArray alloc] initWithObjects: self.title, nil];
-  }
- else
- {
-      [mainDelegate.trayDishes addObject: self.title]; 
- }
+    [mainDelegate.trayDishes addObject: self.title]; 
 }
 
 - (IBAction)removeFromTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-   NSInteger dishIndex = [mainDelegate.trayDishes indexOfObject:self.title];
-   [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
+    NSInteger dishIndex = [mainDelegate.trayDishes indexOfObject:self.title];
+    [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
 }
 
 - (IBAction)showInfo:(id)sender

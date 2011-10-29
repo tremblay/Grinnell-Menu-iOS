@@ -14,6 +14,8 @@
 - (IBAction)editTable:(id)sender;
 - (IBAction)clearTray:(id)sender;
 - (IBAction)toVenueView:(id)sender;
+
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
+
 
 @end

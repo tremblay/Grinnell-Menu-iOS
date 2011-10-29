@@ -55,11 +55,11 @@
     if (buttonIndex == 1) {
     }
     else {
-        Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
         if (mainDelegate.trayDishes.count == 0) {
         }
         else{
-        [mainDelegate.trayDishes removeAllObjects];
+            [mainDelegate.trayDishes removeAllObjects];
         }
         [newTableView reloadData];
     }
@@ -82,15 +82,11 @@
 
 - (void)viewDidLoad
 {
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (mainDelegate.trayDishes == nil) {
-        mainDelegate.trayDishes = [[NSArray alloc] initWithObjects: nil];
-    }
-    
     //Edit Button
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
     [self.navigationItem setRightBarButtonItem:editButton];
     //toVenueView
+     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
     {
         UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
@@ -161,9 +157,9 @@
     }
     
     // Configure the cell...
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-     cell.textLabel.text = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -199,13 +195,14 @@
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
-        Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
         [mainDelegate.trayDishes removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
+        [tableView deleteRowsAtIndexPaths:([[NSArray alloc] initWithObjects:indexPath, nil])withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
+
 
 @end
