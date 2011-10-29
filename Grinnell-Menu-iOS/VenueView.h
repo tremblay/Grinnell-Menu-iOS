@@ -11,12 +11,13 @@
 
 @interface VenueView : UIViewController {
     NSArray *venues;
-    NSMutableArray *dishes;    
+    NSMutableArray *dishes;   
+    UITableView *newTableView;
 }
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showTray:(id)sender;
 -(void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish;
 
-
+@property (nonatomic, retain) IBOutlet UITableView *newTableView;
 
 @end

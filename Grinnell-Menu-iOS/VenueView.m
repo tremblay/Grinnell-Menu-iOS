@@ -13,6 +13,7 @@
 
 @implementation VenueView 
 
+@synthesize newTableView;
 
 - (IBAction)showTray:(id)sender
 {    
@@ -83,7 +84,11 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [newTableView reloadData];
+    [super viewWillAppear:animated];
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -150,7 +155,7 @@ titleForHeaderInSection:(NSInteger)section
     Dish *dish = [dishes objectAtIndex:theRow];
     cell.textLabel.text = dish.name;
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([mainDelegate.trayDishes containsObject:cell.textLabel]){
+    if([mainDelegate.trayDishes containsObject:dish.name]){
         dish.isChecked = YES;
     }
     else{
@@ -239,6 +244,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+    [newTableView release];
     [venues release];
     [dishes release];
     [super dealloc];
