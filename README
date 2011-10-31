@@ -6,9 +6,10 @@
 +-----------------------------------------------------------------------+
 Authors:	David Cowden
                 Colin Tremblay
-		**add your names here** 
+		Aaltan Ahmad
+		Maijid Moujaled
 
-Date:     	Wednesday 20 October
+Date:     	Wednesday 31 October
 
 +-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --+
 License:
@@ -48,3 +49,17 @@ You can obtain the source with the following command:
 	git clone git://github.com/GrinnellAppDev/Grinnell-Menu-iOS.git
 
 If you would like to contribute, shoot us a pull request.  
+
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+
+To-Do List
+	Create the mechanism for importing dishes and their properties
+	Change first page so that each button does what it should (i.e. today, 			tomorrow, and go should load different menus based on day)
+	Sort dishes into sections by venue
+	Create nutrition adder
+	Give it pretty colors?
+	Better checkmark
+
+Possible Features
+	Favorites list or rating for dishes
+	Search bar to search for next time a certain dish is on the menu
