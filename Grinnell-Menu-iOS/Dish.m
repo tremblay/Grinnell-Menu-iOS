@@ -10,11 +10,7 @@
 
 
 @implementation Dish
-@synthesize name, isChecked, venue;
+@synthesize name, isChecked, venue, details, nutrition;
 
-- (void) toggleChecked{
-    if (!self.isChecked)
-        self.isChecked = YES;
-}
 
 @end

@@ -9,8 +9,10 @@
 #import "DishView.h"
 #import "VenueView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
+#import "Dish.h"
 
 @implementation DishView
+@synthesize dishDetails, nutritionDetails;
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -45,6 +47,8 @@
 }
 - (void)dealloc
 {
+    [nutritionDetails release];
+    [dishDetails release];
     [super dealloc];
 }
 
@@ -60,7 +64,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.title = mainDelegate.dishName;
+    
+    Dish *dish = [mainDelegate.dishes objectAtIndex:mainDelegate.dishIndex];
+    dishDetails.text = dish.details;
+    nutritionDetails.text = dish.nutrition;
+    self.title = dish.name;
     [super viewWillAppear:animated];
     
 }
@@ -76,7 +84,8 @@
 
     //Navigate to Main Menu
     UIBarButtonItem *toMainMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Main Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(backToMainMenu:)];
-    [self.navigationItem setRightBarButtonItem:toMainMenuButton];    
+    [self.navigationItem setRightBarButtonItem:toMainMenuButton];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

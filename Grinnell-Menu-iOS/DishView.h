@@ -7,6 +7,8 @@
 //
 
 @interface DishView : UIViewController {
+    UITextView *dishDetails;
+    UITextView *nutritionDetails;
 }
 - (IBAction)showTray:(id)sender;
 - (IBAction)showInfo:(id)sender;
@@ -14,4 +16,7 @@
 - (IBAction)removeFromTray:(id)sender;
 - (IBAction)backToMainMenu:(id)sender;
 - (IBAction)toVenueView:(id)sender;
+@property (nonatomic, retain) IBOutlet UITextView *dishDetails;
+@property (nonatomic, retain) IBOutlet UITextView *nutritionDetails;
+
 @end

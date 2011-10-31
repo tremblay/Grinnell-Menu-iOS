@@ -13,7 +13,7 @@
 
 @implementation Tray
 
-@synthesize newTableView;
+@synthesize newTableView, totalNutrition;
 
 - (IBAction) editTable:(id)sender {
     if(self.editing){
@@ -68,6 +68,7 @@
 
 - (void)dealloc
 {
+    [totalNutrition release];
     [newTableView release];
     [super dealloc];
 }
@@ -107,6 +108,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    totalNutrition.text = @"Total Nutrition is...";
     [newTableView reloadData];
     [super viewWillAppear:animated];
 }
@@ -169,8 +171,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     // Navigation logic may go here. Create and push another view controller.
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    mainDelegate.dishName = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
+    
+    for (mainDelegate.dishIndex = 0; ; mainDelegate.dishIndex++)
+    {
+        Dish *dish = [mainDelegate.dishes objectAtIndex:mainDelegate.dishIndex];
+        if ([dish.name isEqualToString:[mainDelegate.trayDishes objectAtIndex:indexPath.row]]) 
+        {
+            break;
+        }        
+    }
+         
 
+    
     if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
     {
         mainDelegate.navStyle = @"popped";

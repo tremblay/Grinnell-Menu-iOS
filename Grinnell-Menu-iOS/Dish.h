@@ -14,6 +14,8 @@
 }
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *venue;
+@property (nonatomic, retain) NSString *details;
+@property (nonatomic, retain) NSString *nutrition;
 @property (nonatomic, assign) BOOL isChecked;
-- (void)toggleChecked;
+
 @end
