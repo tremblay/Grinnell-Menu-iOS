@@ -12,12 +12,14 @@
 #import "Dish.h"
 
 @implementation DishView
-@synthesize dishDetails, nutritionDetails, removeButton;
+@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton;
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     [mainDelegate.trayDishes addObject: self.title];
     [removeButton setHidden:NO];
+    [addButton setHidden:NO];
+    [otherAddButton setHidden:YES];
 }
 
 - (IBAction)removeFromTray:(id)sender{
@@ -27,6 +29,8 @@
     [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
     }
     [removeButton setHidden:YES];
+    [addButton setHidden:YES];
+    [otherAddButton setHidden:NO];
 }
 
 - (IBAction)showInfo:(id)sender
@@ -51,6 +55,8 @@
 }
 - (void)dealloc
 {
+    [otherAddButton release];
+    [addButton release];
     [removeButton release];
     [nutritionDetails release];
     [dishDetails release];
@@ -74,11 +80,16 @@
     dishDetails.text = dish.details;
     nutritionDetails.text = dish.nutrition;
     self.title = dish.name;
-    if ([mainDelegate.trayDishes containsObject:self.title])
+    if ([mainDelegate.trayDishes containsObject:self.title]){
         [removeButton setHidden:NO];
-    else
+        [addButton setHidden:NO];
+        [otherAddButton setHidden:YES];
+    }
+    else{
         [removeButton setHidden:YES];
-        
+        [addButton setHidden:YES];
+        [otherAddButton setHidden:NO];
+    }
     [super viewWillAppear:animated];
     
 }

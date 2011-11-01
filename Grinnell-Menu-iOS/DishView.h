@@ -10,6 +10,8 @@
     UITextView *dishDetails;
     UITextView *nutritionDetails;
     UIButton *removeButton;
+    UIButton *addButton;
+    UIButton *otherAddButton;
 }
 - (IBAction)showTray:(id)sender;
 - (IBAction)showInfo:(id)sender;
@@ -21,4 +23,6 @@
 @property (nonatomic, retain) IBOutlet UITextView *dishDetails;
 @property (nonatomic, retain) IBOutlet UITextView *nutritionDetails;
 @property (nonatomic, retain) IBOutlet UIButton *removeButton;
+@property (nonatomic, retain) IBOutlet UIButton *addButton;
+@property (nonatomic, retain) IBOutlet UIButton *otherAddButton;
 @end
