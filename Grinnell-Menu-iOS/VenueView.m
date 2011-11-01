@@ -13,7 +13,7 @@
 
 @implementation VenueView 
 
-@synthesize newTableView;
+@synthesize newTableView, dishInd, indPath;
 
 - (IBAction)showTray:(id)sender
 {    
@@ -35,7 +35,7 @@
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.trayDishes = [[NSMutableArray alloc] init];
     
-    mainDelegate.dishes = [[NSMutableArray alloc] initWithCapacity:20];
+    mainDelegate.dishes = [[NSMutableArray alloc] init];
     Dish *dish;
     dish = [[Dish alloc] init];
     dish.name = @"dish1";
@@ -81,22 +81,30 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
 	// Release any cached data, images, etc that aren't in use.
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+}
 - (void)viewDidUnload {
+    [super viewDidUnload];
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [newTableView reloadData];
-    [super viewWillAppear:animated];
+    [super viewWillAppear:YES];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -148,18 +156,14 @@ titleForHeaderInSection:(NSInteger)section
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        UILongPressGestureRecognizer *longPressGesture =
+        [[[UILongPressGestureRecognizer alloc]
+          initWithTarget:self action:@selector(longPress:)] autorelease];
+		[cell addGestureRecognizer:longPressGesture];
     }
     
     // Configure the cell...
-    //FIX THIS
-    int theRow = indexPath.row;
-	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 3;
-	if ( indexPath.section == 3 ) theRow += 3;
-	if ( indexPath.section == 4 ) theRow += 3;
-	if ( indexPath.section == 5 ) theRow += 5;
-    if ( indexPath.section == 6 ) theRow += 5;
-	if ( indexPath.section == 7 ) theRow += 5;
+    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
     
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
@@ -191,40 +195,81 @@ titleForHeaderInSection:(NSInteger)section
         cell.imageView.image = checkmark_blank;
     }
 }
+- (void)longPress:(UILongPressGestureRecognizer *)gesture
+{
+	// only when gesture was recognized, not when ended
+	if (gesture.state == UIGestureRecognizerStateBegan)
+	{
+		// get affected cell
+		UITableViewCell *cell = (UITableViewCell *)[gesture view];
+        
+		// get indexPath of cell
+		NSIndexPath *indexPath = [newTableView indexPathForCell:cell];
+        int theRow = [self getRow:indexPath.row inSection:indexPath.section];
 
+        dishInd = theRow;
+        indPath = indexPath;
+		// do something with this action
+        UIAlertView *addMultiple = [[UIAlertView alloc] initWithTitle:@"Servings?" message:nil delegate:self cancelButtonTitle:@"0" otherButtonTitles:@"1", @"2", @"3", nil];
+        [addMultiple show];
+        [addMultiple release];
+    }
+}
+
+
+#pragma mark UIAlertViewDelegate Methods
+// Called when an alert button is tapped.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Dish *dish = [mainDelegate.dishes objectAtIndex:dishInd];
+
+    if (buttonIndex == 0) {
+        [mainDelegate.trayDishes removeObject:dish.name];
+        dish.isChecked = NO;
+    }
+    else if (buttonIndex == 1){
+        [mainDelegate.trayDishes addObject:dish.name];
+        dish.isChecked = YES;
+    }    
+    else if (buttonIndex == 2){
+        [mainDelegate.trayDishes addObject:dish.name];
+        [mainDelegate.trayDishes addObject:dish.name];
+        dish.isChecked = YES;
+    }
+    else if (buttonIndex == 3){
+        [mainDelegate.trayDishes addObject:dish.name];
+        [mainDelegate.trayDishes addObject:dish.name];
+        [mainDelegate.trayDishes addObject:dish.name];
+        dish.isChecked = YES;
+    }
+    UITableViewCell *cell = [newTableView cellForRowAtIndexPath:indPath];
+    [self configureCheckmarkForCell:cell withDish:dish];
+}
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    // Configure the cell...
-    //FIX THIS
-    int theRow = indexPath.row;
-	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 3;
-	if ( indexPath.section == 3 ) theRow += 3;
-	if ( indexPath.section == 4 ) theRow += 3;
-	if ( indexPath.section == 5 ) theRow += 5;
-    if ( indexPath.section == 6 ) theRow += 5;
-	if ( indexPath.section == 7 ) theRow += 5;
+    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
     
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
-    [mainDelegate.trayDishes addObject:dish.name];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (!dish.isChecked)
+    if (dish.isChecked)
+    {
+        dish.isChecked = NO;
+        [mainDelegate.trayDishes removeObject:dish.name];
+    }
+    else
     {
         dish.isChecked = YES;
-        [self configureCheckmarkForCell:cell withDish:dish];
+        [mainDelegate.trayDishes addObject:dish.name];
     }
+    [self configureCheckmarkForCell:cell withDish:dish];
 }
 
-- (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
-    UIImage *checkmark = [UIImage imageNamed:@"checkmark.jpg"];
-    cell.imageView.image = checkmark;
-}
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
@@ -232,17 +277,9 @@ titleForHeaderInSection:(NSInteger)section
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // Configure the cell...
-    //FIX THIS
-    int theRow = indexPath.row;
-	if ( indexPath.section == 1 ) theRow += 3;
-	if ( indexPath.section == 2 ) theRow += 3;
-	if ( indexPath.section == 3 ) theRow += 3;
-	if ( indexPath.section == 4 ) theRow += 3;
-	if ( indexPath.section == 5 ) theRow += 5;
-    if ( indexPath.section == 6 ) theRow += 5;
-	if ( indexPath.section == 7 ) theRow += 5;
-    
+    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
 
+    
 	Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.dishIndex = theRow;
     mainDelegate.navStyle = @"pushed_from_venue";
@@ -255,10 +292,21 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+    [indPath release];
     [newTableView release];
     [venues release];
     [super dealloc];
 }
 
-
+- (int)getRow:(NSInteger)row inSection:(NSInteger)section{
+    int theRow = row;
+    if ( section == 1 ) theRow += 3;
+    if ( section == 2 ) theRow += 3;
+    if ( section == 3 ) theRow += 3;
+    if ( section == 4 ) theRow += 3;
+    if ( section == 5 ) theRow += 5;
+    if ( section == 6 ) theRow += 5;
+    if ( section == 7 ) theRow += 5;
+    return theRow;
+}
 @end

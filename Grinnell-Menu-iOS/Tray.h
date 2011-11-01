@@ -11,12 +11,14 @@
 {
     UITableView *newTableView;
     UITextView *totalNutrition;
+    NSString *editStyle;
 }
 - (IBAction)editTable:(id)sender;
 - (IBAction)clearTray:(id)sender;
 - (IBAction)toVenueView:(id)sender;
-
+- (IBAction)addDish:(id)sender;
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
 @property (nonatomic, retain) IBOutlet UITextView *totalNutrition;
+@property (nonatomic, retain) NSString *editStyle;
 
 @end

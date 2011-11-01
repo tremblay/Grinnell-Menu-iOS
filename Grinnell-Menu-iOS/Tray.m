@@ -13,9 +13,10 @@
 
 @implementation Tray
 
-@synthesize newTableView, totalNutrition;
+@synthesize newTableView, totalNutrition, editStyle;
 
 - (IBAction) editTable:(id)sender {
+    editStyle = @"delete";
     if(self.editing){
         [super setEditing:NO animated:NO];
         [newTableView setEditing:NO animated:NO];
@@ -31,6 +32,14 @@
         [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
     }
 }
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([editStyle isEqualToString:@"insert"])
+        return UITableViewCellEditingStyleInsert;
+    else
+        return UITableViewCellEditingStyleDelete;
+}
+
 - (IBAction)toVenueView:(id)sender
 {
     [self.navigationController popToViewController:    [self.navigationController.viewControllers objectAtIndex:1] animated:YES]; 
@@ -48,6 +57,25 @@
     [clear show];
     [clear release];
 }
+
+- (IBAction)addDish:(id)sender{
+    editStyle = @"insert";
+    if(self.editing){
+        [super setEditing:NO animated:NO];
+        [newTableView setEditing:NO animated:NO];
+        [newTableView reloadData];
+        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
+    }
+    else {
+        [super setEditing:YES animated:YES];
+        [newTableView setEditing:YES animated:YES];
+        [newTableView reloadData];
+        [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
+    }
+}
+
 
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
@@ -68,6 +96,7 @@
 
 - (void)dealloc
 {
+    [editStyle release];
     [totalNutrition release];
     [newTableView release];
     [super dealloc];
@@ -204,15 +233,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
         [mainDelegate.trayDishes removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:([[NSArray alloc] initWithObjects:indexPath, nil])withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        [mainDelegate.trayDishes insertObject:[mainDelegate.trayDishes objectAtIndex:indexPath.row] atIndex:indexPath.row];
+         //addObject:[mainDelegate.trayDishes objectAtIndex:indexPath.row]];
+        [tableView reloadData];
     }
 }
 

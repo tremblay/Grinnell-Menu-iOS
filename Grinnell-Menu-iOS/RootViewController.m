@@ -11,7 +11,6 @@
 #import "Tray.h"
 
 @implementation RootViewController
-//@synthesize alert;
 
 - (void) venueViewDidFinish:(VenueView *)controller
 {
@@ -59,7 +58,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     NSDate *now = [[NSDate alloc] init];
     [datePicker setDate:now animated:YES];
-  //  [datePicker setMaximumDate:<#(NSDate *)#>];
+  //  [datePicker setMaximumDate:(NSDate *)];
   //  [datePicker setMinimumDate:<#(NSDate *)#>];
     [now release];
 }
