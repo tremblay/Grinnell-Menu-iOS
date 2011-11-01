@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E12A9A70145FCF1A00C9271A /* checkmark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E12A9A6F145FCF1A00C9271A /* checkmark.jpg */; };
+		E1178B751460846900679C32 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = E1178B741460846900679C32 /* minus.png */; };
+		E1178B771460850600679C32 /* checkmark_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = E1178B761460850600679C32 /* checkmark_blank.png */; };
+		E1178B79146087C000679C32 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E1178B78146087C000679C32 /* checkmark.png */; };
 		E12A9A73145FD1EB00C9271A /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9A72145FD1EB00C9271A /* Filter.m */; };
 		E1A0C530145324470072BE76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A0C52F145324470072BE76 /* UIKit.framework */; };
 		E1A0C532145324470072BE76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A0C531145324470072BE76 /* Foundation.framework */; };
@@ -35,7 +37,6 @@
 		E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5831453270C0072BE76 /* DishView.xib */; };
 		E1A0C58D1453270D0072BE76 /* Tray.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C5851453270C0072BE76 /* Tray.m */; };
 		E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5861453270C0072BE76 /* Tray.xib */; };
-		E1DBA2FC145C84EA0099E8CE /* checkmark_blank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */; };
 		E1DBA300145C922C0099E8CE /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DBA2FF145C922B0099E8CE /* Dish.m */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E12A9A6F145FCF1A00C9271A /* checkmark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checkmark.jpg; sourceTree = "<group>"; };
+		E1178B741460846900679C32 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
+		E1178B761460850600679C32 /* checkmark_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_blank.png; sourceTree = "<group>"; };
+		E1178B78146087C000679C32 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		E12A9A71145FD1EA00C9271A /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		E12A9A72145FD1EB00C9271A /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		E1A0C52B145324460072BE76 /* Grinnell-Menu-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grinnell-Menu-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +90,6 @@
 		E1A0C5841453270C0072BE76 /* Tray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tray.h; sourceTree = "<group>"; };
 		E1A0C5851453270C0072BE76 /* Tray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tray.m; sourceTree = "<group>"; };
 		E1A0C5861453270C0072BE76 /* Tray.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tray.xib; sourceTree = "<group>"; };
-		E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checkmark_blank.jpg; sourceTree = "<group>"; };
 		E1DBA2FE145C922A0099E8CE /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		E1DBA2FF145C922B0099E8CE /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,8 +164,8 @@
 				E1A0C576145326010072BE76 /* VenueView.h */,
 				E1A0C577145326010072BE76 /* VenueView.m */,
 				E1A0C578145326010072BE76 /* VenueView.xib */,
-				E1DBA2FA145C84E90099E8CE /* checkmark_blank.jpg */,
-				E12A9A6F145FCF1A00C9271A /* checkmark.jpg */,
+				E1178B761460850600679C32 /* checkmark_blank.png */,
+				E1178B78146087C000679C32 /* checkmark.png */,
 				E1A0C57E1453270B0072BE76 /* Settings.h */,
 				E1A0C57F1453270B0072BE76 /* Settings.m */,
 				E1A0C5801453270B0072BE76 /* Settings.xib */,
@@ -175,6 +177,7 @@
 				E1A0C5841453270C0072BE76 /* Tray.h */,
 				E1A0C5851453270C0072BE76 /* Tray.m */,
 				E1A0C5861453270C0072BE76 /* Tray.xib */,
+				E1178B741460846900679C32 /* minus.png */,
 				E1A0C543145324470072BE76 /* Grinnell_Menu_iOS.xcdatamodeld */,
 				E1A0C538145324470072BE76 /* Supporting Files */,
 			);
@@ -286,8 +289,9 @@
 				E1A0C58A1453270D0072BE76 /* Settings.xib in Resources */,
 				E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */,
 				E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */,
-				E1DBA2FC145C84EA0099E8CE /* checkmark_blank.jpg in Resources */,
-				E12A9A70145FCF1A00C9271A /* checkmark.jpg in Resources */,
+				E1178B751460846900679C32 /* minus.png in Resources */,
+				E1178B771460850600679C32 /* checkmark_blank.png in Resources */,
+				E1178B79146087C000679C32 /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@
 
 @implementation Tray
 
-@synthesize newTableView, totalNutrition, editStyle;
+@synthesize newTableView, totalNutrition, editStyle, plusButton, minusButton;
 
 - (IBAction) editTable:(id)sender {
     editStyle = @"delete";
@@ -96,6 +96,8 @@
 
 - (void)dealloc
 {
+    [plusButton release];
+    [minusButton release];
     [editStyle release];
     [totalNutrition release];
     [newTableView release];

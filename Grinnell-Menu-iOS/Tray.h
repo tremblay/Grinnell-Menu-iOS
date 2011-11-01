@@ -12,6 +12,8 @@
     UITableView *newTableView;
     UITextView *totalNutrition;
     NSString *editStyle;
+    UIBarItem *plusButton;
+    UIBarItem *minusButton;
 }
 - (IBAction)editTable:(id)sender;
 - (IBAction)clearTray:(id)sender;
@@ -20,5 +22,6 @@
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
 @property (nonatomic, retain) IBOutlet UITextView *totalNutrition;
 @property (nonatomic, retain) NSString *editStyle;
-
+@property (nonatomic, retain) IBOutlet UIBarItem *plusButton;
+@property (nonatomic, retain) IBOutlet UIBarItem *minusButton;
 @end

@@ -252,8 +252,8 @@ titleForHeaderInSection:(NSInteger)section
 
 -(void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish
 {
-    UIImage *checkmark = [UIImage imageNamed:@"checkmark.jpg"];
-    UIImage *checkmark_blank = [UIImage imageNamed:@"checkmark_blank.jpg"];
+    UIImage *checkmark = [UIImage imageNamed:@"checkmark.png"];
+    UIImage *checkmark_blank = [UIImage imageNamed:@"checkmark_blank.png"];
     if (dish.isChecked) {
         cell.imageView.image = checkmark;
     }
