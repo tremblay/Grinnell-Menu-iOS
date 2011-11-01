@@ -12,17 +12,21 @@
 #import "Dish.h"
 
 @implementation DishView
-@synthesize dishDetails, nutritionDetails;
+@synthesize dishDetails, nutritionDetails, removeButton;
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [mainDelegate.trayDishes addObject: self.title]; 
+    [mainDelegate.trayDishes addObject: self.title];
+    [removeButton setHidden:NO];
 }
 
 - (IBAction)removeFromTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([mainDelegate.trayDishes containsObject:self.title]){
     NSInteger dishIndex = [mainDelegate.trayDishes indexOfObject:self.title];
     [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
+    }
+    [removeButton setHidden:YES];
 }
 
 - (IBAction)showInfo:(id)sender
@@ -47,6 +51,7 @@
 }
 - (void)dealloc
 {
+    [removeButton release];
     [nutritionDetails release];
     [dishDetails release];
     [super dealloc];
@@ -69,6 +74,11 @@
     dishDetails.text = dish.details;
     nutritionDetails.text = dish.nutrition;
     self.title = dish.name;
+    if ([mainDelegate.trayDishes containsObject:self.title])
+        [removeButton setHidden:NO];
+    else
+        [removeButton setHidden:YES];
+        
     [super viewWillAppear:animated];
     
 }
