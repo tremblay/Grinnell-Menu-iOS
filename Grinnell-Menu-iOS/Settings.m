@@ -7,9 +7,11 @@
 //
 
 #import "Settings.h"
-
+#import "Filter.h"
+#import "Grinnell_Menu_iOSAppDelegate.h"
 
 @implementation Settings
+@synthesize newTableView;
 
 - (IBAction)backToMainMenu:(id)sender{
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -17,7 +19,7 @@
 
 - (void)dealloc
 {
-    [filters release];
+    [newTableView release];
     [super dealloc];
 }
 
@@ -25,7 +27,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -43,7 +44,7 @@
     UIBarButtonItem *toMainMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Main Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(backToMainMenu:)];
     [self.navigationItem setRightBarButtonItem:toMainMenuButton]; 
     
-    filters = [[NSArray alloc] initWithObjects:@"All", @"Vegetarian", @"Vegan", @"Nut Allergies", @"Gluten Free", nil];
+    
     //NEED CODE TO DICTATE WHAT HAPPENS WHEN SWITCHES CHANGE
     [super viewDidLoad];
     self.title = @"Settings"; 
@@ -58,7 +59,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return filters.count;
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return mainDelegate.filters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,8 +73,15 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [filters objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Filter *filter = [[Filter alloc] init];
+    filter = [mainDelegate.filters objectAtIndex:indexPath.row];
+    cell.textLabel.text = filter.name;
+    if (filter.isChecked){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryNone;}
     return cell;
 }
 
@@ -85,22 +94,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (cell.accessoryType == UITableViewCellAccessoryNone)
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Filter *filter = [[Filter alloc] init];
+    filter = [mainDelegate.filters objectAtIndex:indexPath.row];
+        
+    if (!filter.isChecked)
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        // Reflect selection in data model
-        
+        // Reflect selection in data model        
+        if ([filter.name isEqualToString:@"All"]){
+            int temp = 0;
+            while (temp < mainDelegate.filters.count){
+                filter = [mainDelegate.filters objectAtIndex:temp];
+                filter.isChecked = YES;
+                temp++;
+            }
+        }
+        else if ([filter.name isEqualToString:@"Vegetarian"]){
+            filter.isChecked = YES;
+            filter = [mainDelegate.filters objectAtIndex:(1+indexPath.row)];
+            filter.isChecked = YES;
+        }
+        else
+            filter.isChecked = YES;
     }
-    else if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
+    else if (filter.isChecked)
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
+        filter.isChecked = NO;
+        filter = [mainDelegate.filters objectAtIndex:0];
+        filter.isChecked = NO;        
         // Reflect deselection in data model
     }
+
+    [newTableView reloadData];
 }
+
 
 @end

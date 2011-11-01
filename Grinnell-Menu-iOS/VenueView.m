@@ -10,6 +10,7 @@
 #import "DishView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "Dish.h"
+#import "Filter.h"
 
 @implementation VenueView 
 
@@ -35,6 +36,29 @@
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.trayDishes = [[NSMutableArray alloc] init];
     
+    mainDelegate.filters = [[NSMutableArray alloc] init];
+    Filter *filter;
+    filter = [[Filter alloc]  init];
+    filter.name = @"All";
+    filter.isChecked = YES;
+    [mainDelegate.filters addObject:filter];
+    filter = [[Filter alloc]  init];
+    filter.name = @"Vegetarian";
+    filter.isChecked = YES;
+    [mainDelegate.filters addObject:filter];
+    filter = [[Filter alloc]  init];
+    filter.name = @"Vegan";
+    filter.isChecked = YES;
+    [mainDelegate.filters addObject:filter];
+    filter = [[Filter alloc]  init];
+    filter.name = @"Food Containing Nuts";
+    filter.isChecked = YES;
+    [mainDelegate.filters addObject:filter];
+    filter = [[Filter alloc]  init];
+    filter.name = @"Gluten Free";
+    filter.isChecked = YES;
+    [mainDelegate.filters addObject:filter];
+    
     mainDelegate.dishes = [[NSMutableArray alloc] init];
     Dish *dish;
     dish = [[Dish alloc] init];
@@ -43,6 +67,10 @@
     dish.venue = @"Honor Grill";
     dish.details = @"dish1 details are...";
     dish.nutrition = @"dish1 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
     
     dish = [[Dish alloc] init];
@@ -51,6 +79,10 @@
     dish.venue = @"Honor Grill";
     dish.details = @"dish2 details are...";
     dish.nutrition = @"dish2 nutrition is...";
+    dish.nutAllergen = YES;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
 
     dish = [[Dish alloc] init];
@@ -59,6 +91,10 @@
     dish.venue = @"Honor Grill";
     dish.details = @"dish3 details are...";
     dish.nutrition = @"dish3 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
 
     dish = [[Dish alloc] init];
@@ -67,6 +103,10 @@
     dish.venue = @"Desserts";
     dish.details = @"dish4 details are...";
     dish.nutrition = @"dish4 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
 
     dish = [[Dish alloc] init];
@@ -75,6 +115,10 @@
     dish.venue = @"Desserts";
     dish.details = @"dish5 details are...";
     dish.nutrition = @"dish5 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
 
     self.title = @"Venues";
@@ -166,7 +210,29 @@ titleForHeaderInSection:(NSInteger)section
     int theRow = [self getRow:indexPath.row inSection:indexPath.section];
     
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    //FILTERS
+    Filter *allFilter = [mainDelegate.filters objectAtIndex:0];
+    Filter *vegetFilter = [mainDelegate.filters objectAtIndex:1];
+    Filter *veganFilter = [mainDelegate.filters objectAtIndex:2];
+    Filter *nutFilter = [mainDelegate.filters objectAtIndex:3];
+    Filter *glutenFilter = [mainDelegate.filters objectAtIndex:4];
+    if (allFilter.isChecked){}
+    else if(!vegetFilter.isChecked){
+        //handle it
+    }
+    else if(!veganFilter.isChecked){
+        //handle it
+    }
+    else if(!nutFilter.isChecked){
+        //handle it
+    }
+    else if(!glutenFilter.isChecked){
+        //handle it
+    }
+
     Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
+
     cell.textLabel.text = dish.name;
     
     if([mainDelegate.trayDishes containsObject:dish.name]){

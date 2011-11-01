@@ -13,6 +13,7 @@
     NSString *fromDishView;
     NSMutableArray *trayDishes;
     NSMutableArray *dishes;
+    NSMutableArray *filters;
     NSInteger dishIndex;
 }
 
@@ -25,6 +26,7 @@
 @property (nonatomic, retain) NSString *fromDishView;
 @property (nonatomic, retain) NSMutableArray *trayDishes;
 @property (nonatomic, retain) NSMutableArray *dishes;
+@property (nonatomic, retain) NSMutableArray *filters;
 @property (nonatomic, assign) NSInteger dishIndex;
 
 @end

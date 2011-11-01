@@ -10,9 +10,10 @@
 
 
 @interface Settings : UIViewController {
-    NSArray *filters;
+    UITableView *newTableView;
 }
 - (IBAction)backToMainMenu:(id)sender;
+@property (nonatomic, retain) IBOutlet UITableView *newTableView;
 
 @end
 

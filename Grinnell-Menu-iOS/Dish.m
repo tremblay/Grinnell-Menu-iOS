@@ -10,7 +10,7 @@
 
 
 @implementation Dish
-@synthesize name, isChecked, venue, details, nutrition;
+@synthesize name, isChecked, venue, details, nutrition, nutAllergen, glutenFree, vegetarian, vegan;
 
 
 @end

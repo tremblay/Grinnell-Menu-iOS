@@ -14,7 +14,7 @@
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize navStyle, fromDishView, trayDishes, dishes, dishIndex;
+@synthesize navStyle, fromDishView, trayDishes, dishes, dishIndex, filters;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -52,6 +52,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+    [filters release];
     [dishes release];
     [trayDishes release];
 	[navigationController release];

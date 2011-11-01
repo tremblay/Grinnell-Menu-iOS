@@ -25,8 +25,7 @@
 - (IBAction)removeFromTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([mainDelegate.trayDishes containsObject:self.title]){
-    NSInteger dishIndex = [mainDelegate.trayDishes indexOfObject:self.title];
-    [mainDelegate.trayDishes removeObjectAtIndex: dishIndex];
+        [mainDelegate.trayDishes removeObject:self.title];
     }
     [removeButton setHidden:YES];
     [addButton setHidden:YES];
