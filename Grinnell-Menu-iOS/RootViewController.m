@@ -11,6 +11,7 @@
 #import "Tray.h"
 
 @implementation RootViewController
+@synthesize today, tomorrow, go;
 
 - (void) venueViewDidFinish:(VenueView *)controller
 {
@@ -33,6 +34,9 @@
 
 - (void)dealloc
 {
+    [today release];
+    [tomorrow release];
+    [go release];
     [super dealloc];
 }
 
