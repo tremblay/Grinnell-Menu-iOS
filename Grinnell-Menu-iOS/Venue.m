@@ -2,7 +2,7 @@
 //  Venue.m
 //  Grinnell-Menu-iOS
 //
-//  Created by Colin Tremblay on 11/8/11.
+//  Created by Aaltan Ahmad on 11/8/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,5 +10,11 @@
 
 
 @implementation Venue
-@synthesize name, count;
+@synthesize name, dishes;
+-(id)init{
+    if ((self = [super init])){
+        self.dishes = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 @end

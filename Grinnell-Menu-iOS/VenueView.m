@@ -10,8 +10,8 @@
 #import "DishView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "Dish.h"
-#import "Venue.h"
 #import "Filter.h"
+#import "Venue.h"
 
 @implementation VenueView 
 
@@ -59,7 +59,7 @@
     filter.isChecked = YES;
     [mainDelegate.filters addObject:filter];
     
-    mainDelegate.dishes = [[NSMutableArray alloc] init];
+    mainDelegate.venues = [[NSMutableArray alloc] init];
     Dish *dish;
     dish = [[Dish alloc] init];
     dish.name = @"dish1";
@@ -71,7 +71,20 @@
     dish.glutenFree = NO;
     dish.vegetarian = NO;
     dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
+    
+    int j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
     
     dish = [[Dish alloc] init];
     dish.name = @"dish2";
@@ -83,8 +96,20 @@
     dish.glutenFree = NO;
     dish.vegetarian = NO;
     dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
+    
     dish = [[Dish alloc] init];
     dish.name = @"dish3";
     dish.isChecked = NO;
@@ -95,8 +120,20 @@
     dish.glutenFree = NO;
     dish.vegetarian = NO;
     dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
+    
     dish = [[Dish alloc] init];
     dish.name = @"dish4";
     dish.isChecked = NO;
@@ -107,61 +144,42 @@
     dish.glutenFree = NO;
     dish.vegetarian = NO;
     dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
+    
     dish = [[Dish alloc] init];
     dish.name = @"dish5";
     dish.isChecked = NO;
-    dish.venue = @"Desserts";
+    dish.venue = @"Wok";
     dish.details = @"dish5 details are...";
     dish.nutrition = @"dish5 nutrition is...";
     dish.nutAllergen = NO;
     dish.glutenFree = NO;
     dish.vegetarian = NO;
     dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-    
-    dish = [[Dish alloc] init];
-    dish.name = @"dish6";
-    dish.isChecked = NO;
-    dish.venue = @"Salad Bar";
-    dish.details = @"dish6 details are...";
-    dish.nutrition = @"dish6 nutrition is...";
-    dish.nutAllergen = NO;
-    dish.glutenFree = NO;
-    dish.vegetarian = NO;
-    dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-    
-    dish = [[Dish alloc] init];
-    dish.name = @"dish7";
-    dish.isChecked = NO;
-    dish.venue = @"Wok";
-    dish.details = @"dish7 details are...";
-    dish.nutrition = @"dish7 nutrition is...";
-    dish.nutAllergen = NO;
-    dish.glutenFree = NO;
-    dish.vegetarian = NO;
-    dish.vegan = NO;
-    [mainDelegate.dishes addObject:dish];
-    
-    venues = [[NSMutableArray alloc] init];
-    int counter;
-    int newCount = 0;
-    
-    for (counter = 0; counter < mainDelegate.dishes.count; counter++)
-    {
-        Dish *dish = [mainDelegate.dishes objectAtIndex:counter];
-        if ([venues containsObject:dish.venue]){
-            int index = [venues indexOfObject:dish.venue];
-            venueCount[index]++;
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
         }
-        else
-        {
-            [venues addObject:dish.venue];
-            venueCount[newCount] = 1;
-            newCount++;
-        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
     }
     
     self.title = @"Venues";
@@ -204,19 +222,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return venues.count;
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    return mainDelegate.venues.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView 
 titleForHeaderInSection:(NSInteger)section
 {
-   return [venues objectAtIndex:section];        
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    Venue *venue = [mainDelegate.venues objectAtIndex:section];
+    return venue.name; 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section
 {
-    return venueCount[section];
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    Venue *venue = [mainDelegate.venues objectAtIndex:section];
+    return venue.dishes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,33 +257,10 @@ titleForHeaderInSection:(NSInteger)section
 		[cell addGestureRecognizer:longPressGesture];
     }
     
-    // Configure the cell...
-    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
-    
+    // Configure the cell...    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
-
-    //FILTERS
-    Filter *allFilter = [mainDelegate.filters objectAtIndex:0];
-    Filter *vegetFilter = [mainDelegate.filters objectAtIndex:1];
-    Filter *veganFilter = [mainDelegate.filters objectAtIndex:2];
-    Filter *nutFilter = [mainDelegate.filters objectAtIndex:3];
-    Filter *glutenFilter = [mainDelegate.filters objectAtIndex:4];
-    if (allFilter.isChecked){}
-    else if(!vegetFilter.isChecked){
-        //handle it
-    }
-    else if(!veganFilter.isChecked){
-        //handle it
-    }
-    else if(!nutFilter.isChecked){
-        if (dish.nutAllergen)
-            ;
-    }
-    else if(!glutenFilter.isChecked){
-        //handle it
-    }
-
+    Venue *venue = [mainDelegate.venues objectAtIndex:indexPath.section];
+    Dish *dish = [venue.dishes objectAtIndex:indexPath.row];
 
     cell.textLabel.text = dish.name;
     
@@ -288,6 +290,7 @@ titleForHeaderInSection:(NSInteger)section
         cell.imageView.image = checkmark_blank;
     }
 }
+
 - (void)longPress:(UILongPressGestureRecognizer *)gesture
 {
 	// only when gesture was recognized, not when ended
@@ -297,11 +300,10 @@ titleForHeaderInSection:(NSInteger)section
 		UITableViewCell *cell = (UITableViewCell *)[gesture view];
         
 		// get indexPath of cell
+        Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
 		NSIndexPath *indexPath = [newTableView indexPathForCell:cell];
-        int theRow = [self getRow:indexPath.row inSection:indexPath.section];
-
-        dishInd = theRow;
-        indPath = indexPath;
+        mainDelegate.dishRow = indexPath.row;
+        mainDelegate.dishSection = indexPath.section;
 		// do something with this action
         UIAlertView *addMultiple = [[UIAlertView alloc] initWithTitle:@"Servings?" message:nil delegate:self cancelButtonTitle:@"0" otherButtonTitles:@"1", @"2", @"3", nil];
         [addMultiple show];
@@ -314,8 +316,8 @@ titleForHeaderInSection:(NSInteger)section
 // Called when an alert button is tapped.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Dish *dish = [mainDelegate.dishes objectAtIndex:dishInd];
-
+    Venue *venue = [mainDelegate.venues objectAtIndex:mainDelegate.dishSection];
+    Dish *dish = [venue.dishes objectAtIndex:mainDelegate.dishRow];
     if (buttonIndex == 0) {
         [mainDelegate.trayDishes removeObject:dish.name];
         dish.isChecked = NO;
@@ -337,18 +339,18 @@ titleForHeaderInSection:(NSInteger)section
     }
     UITableViewCell *cell = [newTableView cellForRowAtIndexPath:indPath];
     [self configureCheckmarkForCell:cell withDish:dish];
+    [newTableView reloadData];
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
     
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
-    
+    Venue *venue = [mainDelegate.venues objectAtIndex:indexPath.section];
+    Dish *dish = [venue.dishes objectAtIndex:indexPath.row];    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (dish.isChecked)
     {
@@ -369,14 +371,12 @@ titleForHeaderInSection:(NSInteger)section
     // Navigation logic may go here. Create and push another view controller.
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    // Configure the cell...
-    int theRow = [self getRow:indexPath.row inSection:indexPath.section];
-
-    
+    // Configure the cell...    
 	Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    mainDelegate.dishIndex = theRow;
     mainDelegate.navStyle = @"pushed_from_venue";
-
+    mainDelegate.dishRow = indexPath.row;
+    mainDelegate.dishSection = indexPath.section;
+    
     DishView *dishView = 
 	[[DishView alloc] initWithNibName:@"DishView" bundle:nil];
 	[self.navigationController pushViewController:dishView animated:YES];
@@ -387,14 +387,6 @@ titleForHeaderInSection:(NSInteger)section
 - (void)dealloc {
     [indPath release];
     [newTableView release];
-    [venues release];
     [super dealloc];
-}
-
-- (int)getRow:(NSInteger)row inSection:(NSInteger)section{
-    int i, counter;
-    for (i=section-1, counter=0; i>=0; i--)
-        counter += venueCount[i];
-    return (counter + row);
 }
 @end

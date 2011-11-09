@@ -10,6 +10,7 @@
 #import "DishView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "VenueView.h"
+#import "Venue.h"
 
 @implementation Tray
 
@@ -202,15 +203,17 @@
     // Navigation logic may go here. Create and push another view controller.
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    for (mainDelegate.dishIndex = 0; ; mainDelegate.dishIndex++)
-    {
-        Dish *dish = [mainDelegate.dishes objectAtIndex:mainDelegate.dishIndex];
-        if ([dish.name isEqualToString:[mainDelegate.trayDishes objectAtIndex:indexPath.row]]) 
-        {
-            break;
-        }        
+    NSString *dishName = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
+   
+    for (Venue *v in mainDelegate.venues) {
+        for (Dish *d in v.dishes){
+            if([d.name isEqualToString:dishName]){
+                mainDelegate.dishSection = [mainDelegate.venues indexOfObject:v];
+                mainDelegate.dishRow = [v.dishes indexOfObject:d];
+            }
+        }
     }
-         
+    
 
     
     if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])

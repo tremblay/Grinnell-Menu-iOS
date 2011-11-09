@@ -2,7 +2,7 @@
 //  Venue.h
 //  Grinnell-Menu-iOS
 //
-//  Created by Colin Tremblay on 11/8/11.
+//  Created by Aaltan Ahmad on 11/8/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,6 +13,5 @@
     
 }
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, assign) NSInteger count;
-
+@property (nonatomic, retain) NSMutableArray *dishes;
 @end

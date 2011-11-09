@@ -14,7 +14,7 @@
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize navStyle, fromDishView, trayDishes, dishes, dishIndex, filters;
+@synthesize navStyle, fromDishView, trayDishes, venues, dishRow, dishSection, filters;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -27,10 +27,9 @@
 }
 
 - (void)flipToTray {
- Tray *tray = 
- [[Tray alloc] initWithNibName:@"Tray" bundle:nil];
- [self.navigationController pushViewController:tray animated:YES];
- [tray release];
+    Tray *tray = [[Tray alloc] initWithNibName:@"Tray" bundle:nil];
+    [self.navigationController pushViewController:tray animated:YES];
+    [tray release];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
@@ -53,7 +52,7 @@
 
 - (void)dealloc {
     [filters release];
-    [dishes release];
+    [venues release];
     [trayDishes release];
 	[navigationController release];
 	[window release];

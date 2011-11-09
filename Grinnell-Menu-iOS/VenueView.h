@@ -10,16 +10,13 @@
 #import "Dish.h"
 
 @interface VenueView : UIViewController {
-    NSMutableArray *venues;
     UITableView *newTableView;
     NSInteger dishInd;
     NSIndexPath *indPath;
-    int venueCount[20];
 }
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showTray:(id)sender;
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish;
-- (int)getRow:(NSInteger)row inSection:(NSInteger)section;
 
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
 @property (nonatomic, assign) NSInteger dishInd;
