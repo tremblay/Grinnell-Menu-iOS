@@ -10,6 +10,7 @@
 #import "DishView.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "Dish.h"
+#import "Venue.h"
 #import "Filter.h"
 
 @implementation VenueView 
@@ -32,7 +33,6 @@
 
 - (void)viewDidLoad {    
     [super viewDidLoad];
-    venues = [[NSArray alloc] initWithObjects:@"Honor Grill", @"8th Ave. Deli", @"Wok", @"Desserts", @"Pizza", @"Pasta", @"Plat du Jour", @"Vegan Bar", nil];
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.trayDishes = [[NSMutableArray alloc] init];
     
@@ -120,7 +120,50 @@
     dish.vegetarian = NO;
     dish.vegan = NO;
     [mainDelegate.dishes addObject:dish];
-
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish6";
+    dish.isChecked = NO;
+    dish.venue = @"Salad Bar";
+    dish.details = @"dish6 details are...";
+    dish.nutrition = @"dish6 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
+    [mainDelegate.dishes addObject:dish];
+    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish7";
+    dish.isChecked = NO;
+    dish.venue = @"Wok";
+    dish.details = @"dish7 details are...";
+    dish.nutrition = @"dish7 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
+    [mainDelegate.dishes addObject:dish];
+    
+    venues = [[NSMutableArray alloc] init];
+    int counter;
+    int newCount = 0;
+    
+    for (counter = 0; counter < mainDelegate.dishes.count; counter++)
+    {
+        Dish *dish = [mainDelegate.dishes objectAtIndex:counter];
+        if ([venues containsObject:dish.venue]){
+            int index = [venues indexOfObject:dish.venue];
+            venueCount[index]++;
+        }
+        else
+        {
+            [venues addObject:dish.venue];
+            venueCount[newCount] = 1;
+            newCount++;
+        }
+    }
+    
     self.title = @"Venues";
     
 }
@@ -167,30 +210,13 @@
 - (NSString *)tableView:(UITableView *)tableView 
 titleForHeaderInSection:(NSInteger)section
 {
-	if ( section == 0 ) return @"Honor Grill";
-	if ( section == 1 ) return @"8th Ave. Deli";
-	if ( section == 2 ) return @"Wok";
-	if ( section == 3 ) return @"Desserts";
-	if ( section == 4 ) return @"Pizza";
-	if ( section == 5 ) return @"Pasta";
-    if ( section == 6 ) return @"Plat du Jour";
-    if ( section == 7 ) return @"Vegan Bar";
-	return @"Other";
+   return [venues objectAtIndex:section];        
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section
 {
-    //FIX THIS
-	if ( section == 0 ) return 3;
-	if ( section == 1 ) return 0;
-	if ( section == 2 ) return 0;
-	if ( section == 3 ) return 2;
-	if ( section == 4 ) return 0;
-	if ( section == 5 ) return 0;
-    if ( section == 6 ) return 0;
-    if ( section == 7 ) return 0;
-	return 0;
+    return venueCount[section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,7 +236,8 @@ titleForHeaderInSection:(NSInteger)section
     int theRow = [self getRow:indexPath.row inSection:indexPath.section];
     
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
+
     //FILTERS
     Filter *allFilter = [mainDelegate.filters objectAtIndex:0];
     Filter *vegetFilter = [mainDelegate.filters objectAtIndex:1];
@@ -225,13 +252,13 @@ titleForHeaderInSection:(NSInteger)section
         //handle it
     }
     else if(!nutFilter.isChecked){
-        //handle it
+        if (dish.nutAllergen)
+            ;
     }
     else if(!glutenFilter.isChecked){
         //handle it
     }
 
-    Dish *dish = [mainDelegate.dishes objectAtIndex:theRow];
 
     cell.textLabel.text = dish.name;
     
@@ -365,14 +392,9 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 - (int)getRow:(NSInteger)row inSection:(NSInteger)section{
-    int theRow = row;
-    if ( section == 1 ) theRow += 3;
-    if ( section == 2 ) theRow += 3;
-    if ( section == 3 ) theRow += 3;
-    if ( section == 4 ) theRow += 3;
-    if ( section == 5 ) theRow += 5;
-    if ( section == 6 ) theRow += 5;
-    if ( section == 7 ) theRow += 5;
-    return theRow;
+    int i, counter;
+    for (i=section-1, counter=0; i>=0; i--)
+        counter += venueCount[i];
+    return (counter + row);
 }
 @end
