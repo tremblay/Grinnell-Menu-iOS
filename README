@@ -9,7 +9,7 @@ Authors:	David Cowden
 		Aaltan Ahmad
 		Maijid Moujaled
 
-Date:     	Wednesday 9 November
+Date:     	Thursday 10 November
 
 +-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --+
 License:
@@ -53,7 +53,6 @@ If you would like to contribute, shoot us a pull request.
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 
 To-Do List
-	Get into Mobile-Grinnell app
 	Support filters (nut allergies, vegetarian, etc.)
 	Save filters and tray on exit
 	Pretty stuff

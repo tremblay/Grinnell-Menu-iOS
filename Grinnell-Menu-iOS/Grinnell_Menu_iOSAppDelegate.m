@@ -46,7 +46,9 @@
 	// Save data if appropriate
 }
 
-
+- (void)applicationWillResignActive:(UIApplication *)application {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 #pragma mark -
 #pragma mark Memory management
 
