@@ -11,14 +11,10 @@
 
 @interface VenueView : UIViewController {
     UITableView *newTableView;
-    NSInteger dishInd;
-    NSIndexPath *indPath;
 }
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showTray:(id)sender;
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withDish:(Dish *)dish;
 
 @property (nonatomic, retain) IBOutlet UITableView *newTableView;
-@property (nonatomic, assign) NSInteger dishInd;
-@property (nonatomic, retain) NSIndexPath *indPath;
 @end

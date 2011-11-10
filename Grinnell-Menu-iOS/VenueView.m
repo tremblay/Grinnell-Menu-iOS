@@ -15,7 +15,7 @@
 
 @implementation VenueView 
 
-@synthesize newTableView, dishInd, indPath;
+@synthesize newTableView;
 
 - (IBAction)showTray:(id)sender
 {    
@@ -337,8 +337,6 @@ titleForHeaderInSection:(NSInteger)section
         [mainDelegate.trayDishes addObject:dish.name];
         dish.isChecked = YES;
     }
-    UITableViewCell *cell = [newTableView cellForRowAtIndexPath:indPath];
-    [self configureCheckmarkForCell:cell withDish:dish];
     [newTableView reloadData];
 }
 
@@ -385,7 +383,6 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-    [indPath release];
     [newTableView release];
     [super dealloc];
 }

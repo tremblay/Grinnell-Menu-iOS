@@ -11,6 +11,12 @@
 		E1178B771460850600679C32 /* checkmark_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = E1178B761460850600679C32 /* checkmark_blank.png */; };
 		E1178B79146087C000679C32 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E1178B78146087C000679C32 /* checkmark.png */; };
 		E12A9A73145FD1EB00C9271A /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9A72145FD1EB00C9271A /* Filter.m */; };
+		E1A08B09146C7D5D009AE082 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B03146C7D57009AE082 /* Icon-72.png */; };
+		E1A08B0A146C7D5D009AE082 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B04146C7D59009AE082 /* Icon-Small-50.png */; };
+		E1A08B0B146C7D5D009AE082 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B05146C7D5A009AE082 /* Icon-Small.png */; };
+		E1A08B0C146C7D5D009AE082 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B06146C7D5A009AE082 /* Icon-Small@2x.png */; };
+		E1A08B0D146C7D5D009AE082 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B07146C7D5B009AE082 /* Icon.png */; };
+		E1A08B0E146C7D5D009AE082 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A08B08146C7D5D009AE082 /* Icon@2x.png */; };
 		E1A0C530145324470072BE76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A0C52F145324470072BE76 /* UIKit.framework */; };
 		E1A0C532145324470072BE76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A0C531145324470072BE76 /* Foundation.framework */; };
 		E1A0C534145324470072BE76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A0C533145324470072BE76 /* CoreGraphics.framework */; };
@@ -57,6 +63,12 @@
 		E1178B78146087C000679C32 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		E12A9A71145FD1EA00C9271A /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		E12A9A72145FD1EB00C9271A /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		E1A08B03146C7D57009AE082 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		E1A08B04146C7D59009AE082 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		E1A08B05146C7D5A009AE082 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		E1A08B06146C7D5A009AE082 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		E1A08B07146C7D5B009AE082 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		E1A08B08146C7D5D009AE082 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		E1A0C52B145324460072BE76 /* Grinnell-Menu-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grinnell-Menu-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A0C52F145324470072BE76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1A0C531145324470072BE76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,6 +193,12 @@
 				E1A0C5851453270C0072BE76 /* Tray.m */,
 				E1A0C5861453270C0072BE76 /* Tray.xib */,
 				E1A0C543145324470072BE76 /* Grinnell_Menu_iOS.xcdatamodeld */,
+				E1A08B03146C7D57009AE082 /* Icon-72.png */,
+				E1A08B04146C7D59009AE082 /* Icon-Small-50.png */,
+				E1A08B05146C7D5A009AE082 /* Icon-Small.png */,
+				E1A08B06146C7D5A009AE082 /* Icon-Small@2x.png */,
+				E1A08B07146C7D5B009AE082 /* Icon.png */,
+				E1A08B08146C7D5D009AE082 /* Icon@2x.png */,
 				E1A0C538145324470072BE76 /* Supporting Files */,
 			);
 			path = "Grinnell-Menu-iOS";
@@ -293,6 +311,12 @@
 				E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */,
 				E1178B771460850600679C32 /* checkmark_blank.png in Resources */,
 				E1178B79146087C000679C32 /* checkmark.png in Resources */,
+				E1A08B09146C7D5D009AE082 /* Icon-72.png in Resources */,
+				E1A08B0A146C7D5D009AE082 /* Icon-Small-50.png in Resources */,
+				E1A08B0B146C7D5D009AE082 /* Icon-Small.png in Resources */,
+				E1A08B0C146C7D5D009AE082 /* Icon-Small@2x.png in Resources */,
+				E1A08B0D146C7D5D009AE082 /* Icon.png in Resources */,
+				E1A08B0E146C7D5D009AE082 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
