@@ -15,7 +15,7 @@
 
 @implementation VenueView 
 
-@synthesize newTableView;
+@synthesize newTableView, alert;
 
 - (IBAction)showTray:(id)sender
 {    
@@ -30,8 +30,23 @@
     [mainDelegate flipToSettings];
 }
 
+- (IBAction)changeMeal:(id)sender{
+    alert = @"meal";
+    UIAlertView *meal = [[UIAlertView alloc] 
+                         initWithTitle:@"Select Meal" 
+                         message:nil 
+                         delegate:self 
+                         cancelButtonTitle:@"Cancel" 
+                         otherButtonTitles:@"Breakfast", @"Lunch", @"Dinner", nil
+                         ];
+    [meal show];
+    [meal release];
+}
 
-- (void)viewDidLoad {    
+- (void)viewDidLoad {
+    UIBarButtonItem *changeMeal = [[UIBarButtonItem alloc] initWithTitle:@"Change Meal" style:UIBarButtonItemStyleBordered target:self action:@selector(changeMeal:)];
+    [self.navigationItem setRightBarButtonItem:changeMeal];
+    
     [super viewDidLoad];
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDelegate.trayDishes = [[NSMutableArray alloc] init];
@@ -293,6 +308,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)longPress:(UILongPressGestureRecognizer *)gesture
 {
+    alert = @"servings";
 	// only when gesture was recognized, not when ended
 	if (gesture.state == UIGestureRecognizerStateBegan)
 	{
@@ -315,27 +331,36 @@ titleForHeaderInSection:(NSInteger)section
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Venue *venue = [mainDelegate.venues objectAtIndex:mainDelegate.dishSection];
-    Dish *dish = [venue.dishes objectAtIndex:mainDelegate.dishRow];
-    if (buttonIndex == 0) {
-        [mainDelegate.trayDishes removeObject:dish.name];
-        dish.isChecked = NO;
+    if ([alert isEqualToString:@"servings"]) {
+        Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+        Venue *venue = [mainDelegate.venues objectAtIndex:mainDelegate.dishSection];
+        Dish *dish = [venue.dishes objectAtIndex:mainDelegate.dishRow];
+        if (buttonIndex == 0) {
+            [mainDelegate.trayDishes removeObject:dish.name];
+            dish.isChecked = NO;
+        }
+        else if (buttonIndex == 1){
+            [mainDelegate.trayDishes addObject:dish.name];
+            dish.isChecked = YES;
+        }    
+        else if (buttonIndex == 2){
+            [mainDelegate.trayDishes addObject:dish.name];
+            [mainDelegate.trayDishes addObject:dish.name];
+            dish.isChecked = YES;
+        }
+        else if (buttonIndex == 3){
+            [mainDelegate.trayDishes addObject:dish.name];
+            [mainDelegate.trayDishes addObject:dish.name];
+            [mainDelegate.trayDishes addObject:dish.name];
+            dish.isChecked = YES;
+        }
     }
-    else if (buttonIndex == 1){
-        [mainDelegate.trayDishes addObject:dish.name];
-        dish.isChecked = YES;
-    }    
-    else if (buttonIndex == 2){
-        [mainDelegate.trayDishes addObject:dish.name];
-        [mainDelegate.trayDishes addObject:dish.name];
-        dish.isChecked = YES;
-    }
-    else if (buttonIndex == 3){
-        [mainDelegate.trayDishes addObject:dish.name];
-        [mainDelegate.trayDishes addObject:dish.name];
-        [mainDelegate.trayDishes addObject:dish.name];
-        dish.isChecked = YES;
+    else if ([alert isEqualToString:@"meal"]){
+        if (buttonIndex == 0) {
+        }
+        else{
+            //get new data
+        }
     }
     [newTableView reloadData];
 }
@@ -383,6 +408,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+    [alert release];
     [newTableView release];
     [super dealloc];
 }

@@ -43,6 +43,10 @@
 		E1A0C58C1453270D0072BE76 /* DishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5831453270C0072BE76 /* DishView.xib */; };
 		E1A0C58D1453270D0072BE76 /* Tray.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C5851453270C0072BE76 /* Tray.m */; };
 		E1A0C58E1453270D0072BE76 /* Tray.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A0C5861453270C0072BE76 /* Tray.xib */; };
+		E1ADFD70146CFA1E0081109B /* green-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADFD6F146CFA1E0081109B /* green-button.png */; };
+		E1ADFD73146CFB7C0081109B /* long-green-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADFD72146CFB7C0081109B /* long-green-button.png */; };
+		E1ADFD75146CFBC10081109B /* long-black-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADFD74146CFBC10081109B /* long-black-button.png */; };
+		E1ADFD79146CFDEE0081109B /* red-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADFD78146CFDED0081109B /* red-button.png */; };
 		E1DBA300145C922C0099E8CE /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DBA2FF145C922B0099E8CE /* Dish.m */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +107,10 @@
 		E1A0C5841453270C0072BE76 /* Tray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tray.h; sourceTree = "<group>"; };
 		E1A0C5851453270C0072BE76 /* Tray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tray.m; sourceTree = "<group>"; };
 		E1A0C5861453270C0072BE76 /* Tray.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tray.xib; sourceTree = "<group>"; };
+		E1ADFD6F146CFA1E0081109B /* green-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-button.png"; sourceTree = "<group>"; };
+		E1ADFD72146CFB7C0081109B /* long-green-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long-green-button.png"; sourceTree = "<group>"; };
+		E1ADFD74146CFBC10081109B /* long-black-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long-black-button.png"; sourceTree = "<group>"; };
+		E1ADFD78146CFDED0081109B /* red-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-button.png"; sourceTree = "<group>"; };
 		E1DBA2FE145C922A0099E8CE /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		E1DBA2FF145C922B0099E8CE /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +180,8 @@
 				E1A0C549145324480072BE76 /* RootViewController.h */,
 				E1A0C54A145324480072BE76 /* RootViewController.m */,
 				E1A0C54C145324480072BE76 /* RootViewController.xib */,
+				E1ADFD72146CFB7C0081109B /* long-green-button.png */,
+				E1ADFD74146CFBC10081109B /* long-black-button.png */,
 				E1DBA2FE145C922A0099E8CE /* Dish.h */,
 				E1DBA2FF145C922B0099E8CE /* Dish.m */,
 				87B46E9E146A3ED7001007BA /* Venue.h */,
@@ -189,6 +199,8 @@
 				E1A0C5811453270C0072BE76 /* DishView.h */,
 				E1A0C5821453270C0072BE76 /* DishView.m */,
 				E1A0C5831453270C0072BE76 /* DishView.xib */,
+				E1ADFD6F146CFA1E0081109B /* green-button.png */,
+				E1ADFD78146CFDED0081109B /* red-button.png */,
 				E1A0C5841453270C0072BE76 /* Tray.h */,
 				E1A0C5851453270C0072BE76 /* Tray.m */,
 				E1A0C5861453270C0072BE76 /* Tray.xib */,
@@ -317,6 +329,10 @@
 				E1A08B0C146C7D5D009AE082 /* Icon-Small@2x.png in Resources */,
 				E1A08B0D146C7D5D009AE082 /* Icon.png in Resources */,
 				E1A08B0E146C7D5D009AE082 /* Icon@2x.png in Resources */,
+				E1ADFD70146CFA1E0081109B /* green-button.png in Resources */,
+				E1ADFD73146CFB7C0081109B /* long-green-button.png in Resources */,
+				E1ADFD75146CFBC10081109B /* long-black-button.png in Resources */,
+				E1ADFD79146CFDEE0081109B /* red-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
