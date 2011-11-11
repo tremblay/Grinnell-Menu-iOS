@@ -22,7 +22,9 @@
 - (void)flipToSettings {
     Settings *settings = 
 	[[Settings alloc] initWithNibName:@"Settings" bundle:nil];
-	[self.navigationController pushViewController:settings animated:YES];
+    
+    [self.navigationController pushViewController:settings animated:YES];
+
     [settings release];
 }
 

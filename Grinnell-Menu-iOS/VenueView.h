@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dish.h"
+#import "Settings.h"
 
 @interface VenueView : UIViewController {
     UITableView *newTableView;

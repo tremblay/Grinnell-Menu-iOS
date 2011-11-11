@@ -12,7 +12,7 @@
 #import "Dish.h"
 #import "Filter.h"
 #import "Venue.h"
-
+#import "Settings.h"
 @implementation VenueView 
 
 @synthesize newTableView, alert;
@@ -196,11 +196,77 @@
         [venue.dishes addObject:dish];
         [mainDelegate.venues addObject:venue];
     }
-    
+    dish = [[Dish alloc] init];
+    dish.name = @"dish6";
+    dish.isChecked = NO;
+    dish.venue = @"Wok";
+    dish.details = @"dish6 details are...";
+    dish.nutrition = @"dish6 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
+    dish = [[Dish alloc] init];
+    dish.name = @"dish7";
+    dish.isChecked = NO;
+    dish.venue = @"Wok";
+    dish.details = @"dish7 details are...";
+    dish.nutrition = @"dish7 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
+    dish = [[Dish alloc] init];
+    dish.name = @"dish8";
+    dish.isChecked = NO;
+    dish.venue = @"Deli";
+    dish.details = @"dish8 details are...";
+    dish.nutrition = @"dish8 nutrition is...";
+    dish.nutAllergen = NO;
+    dish.glutenFree = NO;
+    dish.vegetarian = NO;
+    dish.vegan = NO;
+    j=1;    
+    for (Venue *x in mainDelegate.venues) {
+        if ([x.name isEqualToString:dish.venue]){
+            [x.dishes addObject:dish];
+            j=0;
+        }
+    }
+    if (j){
+        Venue *venue = [[Venue alloc] init];
+        venue.name = dish.venue;
+        [venue.dishes addObject:dish];
+        [mainDelegate.venues addObject:venue];
+    }
     self.title = @"Venues";
-    
 }
-
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
 }
@@ -249,6 +315,36 @@ titleForHeaderInSection:(NSInteger)section
 
     Venue *venue = [mainDelegate.venues objectAtIndex:section];
     return venue.name; 
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if ([self tableView:tableView titleForHeaderInSection:section] != nil) {
+        return 40;
+    }
+    else {
+        // If no section header title, no section header needed
+        return 0;
+    }
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {
+        return nil;
+    }
+    
+    // Create label with section title
+    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(20, 6, 300, 30);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.text = sectionTitle;
+    
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [view autorelease];
+    [view addSubview:label];
+    
+    return view;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
