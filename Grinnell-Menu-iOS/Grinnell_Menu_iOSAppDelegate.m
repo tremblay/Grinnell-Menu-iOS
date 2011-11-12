@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "Settings.h"
 #import "Tray.h"
+#import "Filter.h"
 
 @implementation Grinnell_Menu_iOSAppDelegate
 
@@ -34,9 +35,46 @@
     [tray release];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (NSString *) saveFilePath {
+	NSArray *pathArray =
+	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"savedddata.plist"];
+}
 
- 
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    NSString *myPath = [self saveFilePath];
+	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+	
+	if (fileExists)	{
+		NSMutableArray *values = [[NSArray alloc] initWithContentsOfFile:myPath];
+        filters = [[NSMutableArray alloc] initWithArray:values];
+		[values release];
+	}
+    else{
+        filters = [[NSMutableArray alloc] init];
+        Filter *filter;
+        filter = [[Filter alloc]  init];
+        filter.name = @"All";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
+        filter.name = @"Vegetarian";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
+        filter.name = @"Vegan";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
+        filter.name = @"Food Containing Nuts";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
+        filter.name = @"Gluten Free";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+    }
+
     // Override point for customization after app launch
     [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
@@ -44,8 +82,15 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+	NSMutableArray *values = [[NSArray alloc] init];
+    for (int i=0; i<filters.count; i++){
+        [values addObject:[filters objectAtIndex:i]];
+    }
+	[values writeToFile:[self saveFilePath] atomically:YES];
+	[values release];
+    
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     [self.navigationController popToRootViewControllerAnimated:YES];
