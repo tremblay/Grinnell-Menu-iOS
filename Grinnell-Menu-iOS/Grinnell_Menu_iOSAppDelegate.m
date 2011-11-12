@@ -15,19 +15,11 @@
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize navStyle, fromDishView, venues, dishRow, dishSection, filters, trayDishes;
+@synthesize fromDishView, venues, filters, trayDishes;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)flipToSettings {
-    Settings *settings = 
-	[[Settings alloc] initWithNibName:@"Settings" bundle:nil];
-    
-    [self.navigationController pushViewController:settings animated:YES];
-
-    [settings release];
-}
 
 - (void)flipToTray {
     Tray *tray = [[Tray alloc] initWithNibName:@"Tray" bundle:nil];
@@ -104,7 +96,6 @@
     [venues release];
 	[navigationController release];
 	[window release];
-    [navStyle release];
     [fromDishView release];
 	[super dealloc];
 }

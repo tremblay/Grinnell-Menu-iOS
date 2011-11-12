@@ -13,7 +13,7 @@
 #import "Venue.h"
 
 @implementation DishView
-@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton;
+@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton, dishRow, dishSection, navStyle;
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -33,12 +33,6 @@
     [otherAddButton setHidden:NO];
 }
 
-- (IBAction)showInfo:(id)sender
-{    
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [mainDelegate flipToSettings];
-}
-
 - (IBAction)showTray:(id)sender
 {    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -55,6 +49,7 @@
 }
 - (void)dealloc
 {
+    [navStyle release];
     [otherAddButton release];
     [addButton release];
     [removeButton release];
@@ -76,8 +71,8 @@
 {
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    Venue *venue = [mainDelegate.venues objectAtIndex:mainDelegate.dishSection];
-    Dish *dish = [venue.dishes objectAtIndex:mainDelegate.dishRow];
+    Venue *venue = [mainDelegate.venues objectAtIndex:dishSection];
+    Dish *dish = [venue.dishes objectAtIndex:dishRow];
     dishDetails.text = dish.details;
     nutritionDetails.text = dish.nutrition;
     self.title = dish.name;
@@ -97,8 +92,7 @@
 
 - (void)viewDidLoad
 {
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if ([mainDelegate.navStyle isEqualToString:@"pushed_from_tray"])
+    if ([navStyle isEqualToString:@"pushed_from_tray"])
     {
         UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
         [self.navigationItem setLeftBarButtonItem:toVenueViewButton]; 

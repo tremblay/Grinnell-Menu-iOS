@@ -12,9 +12,11 @@
     UIButton *removeButton;
     UIButton *addButton;
     UIButton *otherAddButton;
+    NSInteger dishSection;
+    NSInteger dishRow;
+    NSString *navStyle;
 }
 - (IBAction)showTray:(id)sender;
-- (IBAction)showInfo:(id)sender;
 - (IBAction)addToTray:(id)sender;
 - (IBAction)removeFromTray:(id)sender;
 - (IBAction)backToMainMenu:(id)sender;
@@ -25,4 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *removeButton;
 @property (nonatomic, retain) IBOutlet UIButton *addButton;
 @property (nonatomic, retain) IBOutlet UIButton *otherAddButton;
+@property (nonatomic, assign) NSInteger dishSection;
+@property (nonatomic, assign) NSInteger dishRow;
+@property (nonatomic, retain) NSString *navStyle;
 @end

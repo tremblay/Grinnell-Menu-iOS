@@ -202,33 +202,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     // Navigation logic may go here. Create and push another view controller.
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    DishView *dishView = [[DishView alloc] initWithNibName:@"DishView" bundle:nil];
     NSString *dishName = [mainDelegate.trayDishes objectAtIndex:indexPath.row];
    
     for (Venue *v in mainDelegate.venues) {
         for (Dish *d in v.dishes){
             if([d.name isEqualToString:dishName]){
-                mainDelegate.dishSection = [mainDelegate.venues indexOfObject:v];
-                mainDelegate.dishRow = [v.dishes indexOfObject:d];
+                dishView.dishSection = [mainDelegate.venues indexOfObject:v];
+                dishView.dishRow = [v.dishes indexOfObject:d];
             }
         }
     }
-    
 
-    
-    if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
-    {
-        mainDelegate.navStyle = @"popped";
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else
-    {
-        mainDelegate.navStyle = @"pushed_from_tray";
-        DishView *dishView = 
-        [[DishView alloc] initWithNibName:@"DishView" bundle:nil];
-        [self.navigationController pushViewController:dishView animated:YES];
-        [dishView release];
-    }
+    dishView.navStyle = @"pushed_from_tray";
+    [self.navigationController pushViewController:dishView animated:YES];
+    [dishView release];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

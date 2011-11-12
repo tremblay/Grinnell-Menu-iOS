@@ -9,6 +9,7 @@
 #import "Settings.h"
 #import "Filter.h"
 #import "Grinnell_Menu_iOSAppDelegate.h"
+#import "VenueView.h"
 
 @implementation Settings
 @synthesize newTableView;
