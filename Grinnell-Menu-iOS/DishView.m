@@ -11,9 +11,10 @@
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "Dish.h"
 #import "Venue.h"
+#import "Tray.h"
 
 @implementation DishView
-@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton, dishRow, dishSection, navStyle;
+@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton, dishRow, dishSection, fromTray;
 
 - (IBAction)addToTray:(id)sender{
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -36,8 +37,31 @@
 - (IBAction)showTray:(id)sender
 {    
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    mainDelegate.fromDishView = self.title;
-    [mainDelegate flipToTray];
+    if ([mainDelegate.trayDishes containsObject:self.title])
+        mainDelegate.isInTray = YES;
+    else
+        mainDelegate.isInTray = NO;
+    
+    fromTray = YES;
+    Tray *tray = [[Tray alloc] initWithNibName:@"Tray" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tray];
+    navController.navigationBar.barStyle = UIBarStyleBlack;
+    tray.buttonTitle = self.title;
+    [self presentModalViewController:navController animated:YES];
+    [tray release];
+}
+
+- (void)updateView{
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    for (Venue *v in mainDelegate.venues) {
+        for (Dish *d in v.dishes){
+            if([d.name isEqualToString:mainDelegate.dishName]){
+                dishSection = [mainDelegate.venues indexOfObject:v];
+                dishRow = [v.dishes indexOfObject:d];
+            }
+        }
+    }
 }
 
 - (IBAction)backToMainMenu:(id)sender{
@@ -45,11 +69,10 @@
 }
 - (IBAction)toVenueView:(id)sender
 {
-    [self.navigationController popToViewController:    [self.navigationController.viewControllers objectAtIndex:1] animated:YES]; 
+    [self.navigationController popToViewController: [self.navigationController.viewControllers objectAtIndex:1] animated:YES]; 
 }
 - (void)dealloc
 {
-    [navStyle release];
     [otherAddButton release];
     [addButton release];
     [removeButton release];
@@ -70,7 +93,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (mainDelegate.calledVenues){
+        [self.navigationController popViewControllerAnimated:NO];
+        mainDelegate.calledVenues = NO;
+    }
     
+    mainDelegate.selectedDish = NO;
+    if (fromTray) {
+        [self updateView];
+        fromTray = NO;
+    }
     Venue *venue = [mainDelegate.venues objectAtIndex:dishSection];
     Dish *dish = [venue.dishes objectAtIndex:dishRow];
     dishDetails.text = dish.details;
@@ -92,12 +124,6 @@
 
 - (void)viewDidLoad
 {
-    if ([navStyle isEqualToString:@"pushed_from_tray"])
-    {
-        UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
-        [self.navigationItem setLeftBarButtonItem:toVenueViewButton]; 
-    }
-
     //Navigate to Main Menu
     UIBarButtonItem *toMainMenuButton = [[UIBarButtonItem alloc] initWithTitle:@"Main Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(backToMainMenu:)];
     [self.navigationItem setRightBarButtonItem:toMainMenuButton];
