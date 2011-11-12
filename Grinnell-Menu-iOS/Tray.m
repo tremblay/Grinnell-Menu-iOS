@@ -113,12 +113,12 @@
 }
 
 - (void)viewDidLoad
-{
+{     
+    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     //Edit Button
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
     [self.navigationItem setRightBarButtonItem:editButton];
     //toVenueView
-     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([mainDelegate.trayDishes containsObject:mainDelegate.fromDishView])
     {
         UIBarButtonItem *toVenueViewButton = [[UIBarButtonItem alloc] initWithTitle:@"Venues" style:UIBarButtonItemStyleBordered target:self action:@selector(toVenueView:)];
@@ -248,7 +248,6 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         [mainDelegate.trayDishes insertObject:[mainDelegate.trayDishes objectAtIndex:indexPath.row] atIndex:indexPath.row];
-         //addObject:[mainDelegate.trayDishes objectAtIndex:indexPath.row]];
         [tableView reloadData];
     }
 }

@@ -13,6 +13,7 @@
 #import "Filter.h"
 #import "Venue.h"
 #import "Settings.h"
+
 @implementation VenueView 
 
 @synthesize newTableView, alert, originalVenues;
@@ -461,7 +462,6 @@ titleForHeaderInSection:(NSInteger)section
     Dish *dish = [venue.dishes objectAtIndex:indexPath.row];
 
     cell.textLabel.text = dish.name;
-    
     if([mainDelegate.trayDishes containsObject:dish.name]){
         dish.isChecked = YES;
     }
@@ -514,7 +514,8 @@ titleForHeaderInSection:(NSInteger)section
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alert isEqualToString:@"servings"]) {
+    if ([alert isEqualToString:@"servings"])
+    {
         Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
         Venue *venue = [mainDelegate.venues objectAtIndex:mainDelegate.dishSection];
         Dish *dish = [venue.dishes objectAtIndex:mainDelegate.dishRow];
@@ -522,19 +523,10 @@ titleForHeaderInSection:(NSInteger)section
             [mainDelegate.trayDishes removeObject:dish.name];
             dish.isChecked = NO;
         }
-        else if (buttonIndex == 1){
-            [mainDelegate.trayDishes addObject:dish.name];
-            dish.isChecked = YES;
-        }    
-        else if (buttonIndex == 2){
-            [mainDelegate.trayDishes addObject:dish.name];
-            [mainDelegate.trayDishes addObject:dish.name];
-            dish.isChecked = YES;
-        }
-        else if (buttonIndex == 3){
-            [mainDelegate.trayDishes addObject:dish.name];
-            [mainDelegate.trayDishes addObject:dish.name];
-            [mainDelegate.trayDishes addObject:dish.name];
+        else{
+            for (int i=0; i<buttonIndex; i++) {
+                [mainDelegate.trayDishes addObject:dish.name];
+            }
             dish.isChecked = YES;
         }
     }
@@ -558,6 +550,7 @@ titleForHeaderInSection:(NSInteger)section
     Venue *venue = [mainDelegate.venues objectAtIndex:indexPath.section];
     Dish *dish = [venue.dishes objectAtIndex:indexPath.row];    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (dish.isChecked)
     {
         dish.isChecked = NO;

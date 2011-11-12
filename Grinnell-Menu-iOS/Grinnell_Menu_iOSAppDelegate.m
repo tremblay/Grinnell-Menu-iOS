@@ -15,7 +15,7 @@
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize navStyle, fromDishView, trayDishes, venues, dishRow, dishSection, filters;
+@synthesize navStyle, fromDishView, venues, dishRow, dishSection, filters, trayDishes;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -44,7 +44,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     NSString *myPath = [self saveFilePath];
 	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
-	
+
 	if (fileExists)	{
 		NSMutableArray *values = [[NSArray alloc] initWithContentsOfFile:myPath];
         filters = [[NSMutableArray alloc] initWithArray:values];
@@ -99,9 +99,9 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+    [trayDishes release];
     [filters release];
     [venues release];
-    [trayDishes release];
 	[navigationController release];
 	[window release];
     [navStyle release];
