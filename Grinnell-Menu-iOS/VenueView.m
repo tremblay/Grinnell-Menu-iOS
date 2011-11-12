@@ -362,22 +362,28 @@
     }
     
     if (allFilter){
-
+    }
+    else if (!nutFilter && veganFilter && vegetFilter && wfgfFilter){
+        nutPred = [NSPredicate predicateWithFormat:@"nutAllergen == NO"];
+        for (Venue *v in mainDelegate.venues) {
+            [v.dishes filterUsingPredicate:nutPred];
+        }
     }
     else{
-        if (vegetFilter)
+        NSMutableArray *preds = [[NSMutableArray alloc] init];
+        [preds removeAllObjects];
+        if (vegetFilter){
             vegetPred = [NSPredicate predicateWithFormat:@"vegetarian == YES"];
-        //else vegetPred = [NSPredicate predicateWithFormat:@"vegetarian == YES"];
-        
-        if (veganFilter)
+            [preds addObject:vegetPred];
+        }
+        if (veganFilter){
             veganPred = [NSPredicate predicateWithFormat:@"vegan == YES"];
-        //else veganPred = [NSPredicate predicateWithFormat:@"vegan == YES"];
-
-        if (wfgfFilter)
+            [preds addObject:veganPred];
+        }
+        if (wfgfFilter){
             wfgfPred = [NSPredicate predicateWithFormat:@"glutenFree == YES"];
-       // else wfgfPred = [NSPredicate predicateWithFormat:@"glutenFree == YES"];
-        
-        NSArray *preds = [[NSArray alloc] initWithObjects:vegetPred, veganPred, wfgfPred, nil];
+            [preds addObject:wfgfPred];
+        }
         
         NSPredicate *compoundPred = [NSCompoundPredicate orPredicateWithSubpredicates:preds];
         
