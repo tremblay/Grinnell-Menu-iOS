@@ -50,6 +50,7 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 372}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -73,8 +74,9 @@
 					<object class="IBUIButton" id="152074695">
 						<reference key="NSNextResponder" ref="770739462"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 324}, {121, 37}}</string>
+						<string key="NSFrame">{{21, 317}, {120, 44}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="156299442"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -103,8 +105,9 @@
 					<object class="IBUIButton" id="156299442">
 						<reference key="NSNextResponder" ref="770739462"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{99, 324}, {121, 37}}</string>
+						<string key="NSFrame">{{100, 317}, {120, 44}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="634934965"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -120,8 +123,9 @@
 					<object class="IBUIButton" id="634934965">
 						<reference key="NSNextResponder" ref="770739462"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{150, 324}, {150, 37}}</string>
+						<string key="NSFrame">{{150, 317}, {150, 44}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="37500359"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -142,6 +146,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 20}, {280, 138}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="469551131"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="925493083">
 							<int key="NSColorSpace">1</int>
@@ -162,6 +167,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 171}, {280, 138}}</string>
 						<reference key="NSSuperview" ref="770739462"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="152074695"/>
 						<reference key="IBUIBackgroundColor" ref="925493083"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -177,6 +183,7 @@
 				</object>
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="236983126"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">10</int>
@@ -4799,7 +4806,125 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="sourceID"/>
 			<int key="maxID">61</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">DishView</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addToTray:</string>
+							<string>backToMainMenu:</string>
+							<string>removeFromTray:</string>
+							<string>showTray:</string>
+							<string>toVenueView:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addToTray:</string>
+							<string>backToMainMenu:</string>
+							<string>removeFromTray:</string>
+							<string>showTray:</string>
+							<string>toVenueView:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">addToTray:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">backToMainMenu:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">removeFromTray:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showTray:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">toVenueView:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addButton</string>
+							<string>dishDetails</string>
+							<string>nutritionDetails</string>
+							<string>otherAddButton</string>
+							<string>removeButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UITextView</string>
+							<string>UITextView</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addButton</string>
+							<string>dishDetails</string>
+							<string>nutritionDetails</string>
+							<string>otherAddButton</string>
+							<string>removeButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">addButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">dishDetails</string>
+								<string key="candidateClassName">UITextView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">nutritionDetails</string>
+								<string key="candidateClassName">UITextView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">otherAddButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">removeButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DishView.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
