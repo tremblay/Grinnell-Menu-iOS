@@ -9,13 +9,12 @@
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "RootViewController.h"
 #import "Settings.h"
-#import "Tray.h"
 #import "Filter.h"
 
 @implementation Grinnell_Menu_iOSAppDelegate
 
 @synthesize window, navigationController;
-@synthesize venues, filters, trayDishes, dishName, selectedDish, isInTray, calledVenues;
+@synthesize venues, filters;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -43,21 +42,21 @@
         filter.isChecked = YES;
         [filters addObject:filter];
         filter = [[Filter alloc]  init];
+        filter.name = @"Vegan";
+        filter.isChecked = NO;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
+        filter.name = @"Ovolacto";
+        filter.isChecked = NO;
+        [filters addObject:filter];/*
+        filter = [[Filter alloc]  init];
+        filter.name = @"Wheat/Gluten";
+        filter.isChecked = YES;
+        [filters addObject:filter];
+        filter = [[Filter alloc]  init];
         filter.name = @"Vegetarian";
         filter.isChecked = YES;
-        [filters addObject:filter];
-        filter = [[Filter alloc]  init];
-        filter.name = @"Vegan";
-        filter.isChecked = YES;
-        [filters addObject:filter];
-        filter = [[Filter alloc]  init];
-        filter.name = @"Food Containing Nuts";
-        filter.isChecked = YES;
-        [filters addObject:filter];
-        filter = [[Filter alloc]  init];
-        filter.name = @"Gluten Free";
-        filter.isChecked = YES;
-        [filters addObject:filter];
+        [filters addObject:filter];*/
         [filter release];
     }
 
@@ -85,8 +84,6 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-    [dishName release];
-    [trayDishes release];
     [filters release];
     [venues release];
 	[navigationController release];

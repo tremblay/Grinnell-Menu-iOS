@@ -14,12 +14,11 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *venue;
-@property (nonatomic, retain) NSString *details;
-@property (nonatomic, retain) NSString *nutrition;
-@property (nonatomic, assign) BOOL isChecked;
 @property (nonatomic, assign) BOOL nutAllergen;
 @property (nonatomic, assign) BOOL glutenFree;
 @property (nonatomic, assign) BOOL vegetarian;
 @property (nonatomic, assign) BOOL vegan;
-
+@property (nonatomic, assign) BOOL ovolacto;
+@property (nonatomic, assign) BOOL hasNutrition;
+@property (nonatomic, retain) NSString *nutrition;
 @end

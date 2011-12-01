@@ -11,59 +11,9 @@
 #import "Grinnell_Menu_iOSAppDelegate.h"
 #import "Dish.h"
 #import "Venue.h"
-#import "Tray.h"
 
 @implementation DishView
-@synthesize dishDetails, nutritionDetails, removeButton, addButton, otherAddButton, dishRow, dishSection, fromTray;
-
-- (IBAction)addToTray:(id)sender{
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [mainDelegate.trayDishes addObject: self.title];
-    [removeButton setHidden:NO];
-    [addButton setHidden:NO];
-    [otherAddButton setHidden:YES];
-}
-
-- (IBAction)removeFromTray:(id)sender{
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if ([mainDelegate.trayDishes containsObject:self.title]){
-        [mainDelegate.trayDishes removeObject:self.title];
-    }
-    [removeButton setHidden:YES];
-    [addButton setHidden:YES];
-    [otherAddButton setHidden:NO];
-}
-
-- (IBAction)showTray:(id)sender
-{    
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if ([mainDelegate.trayDishes containsObject:self.title])
-        mainDelegate.isInTray = YES;
-    else
-        mainDelegate.isInTray = NO;
-    
-    fromTray = YES;
-    Tray *tray = [[Tray alloc] initWithNibName:@"Tray" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tray];
-    navController.navigationBar.barStyle = UIBarStyleBlack;
-    tray.buttonTitle = self.title;
-    [self presentModalViewController:navController animated:YES];
-    [navController release];
-    [tray release];
-}
-
-- (void)updateView{
-    Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    for (Venue *v in mainDelegate.venues) {
-        for (Dish *d in v.dishes){
-            if([d.name isEqualToString:mainDelegate.dishName]){
-                dishSection = [mainDelegate.venues indexOfObject:v];
-                dishRow = [v.dishes indexOfObject:d];
-            }
-        }
-    }
-}
+@synthesize nutritionDetails, dishRow, dishSection;
 
 - (IBAction)backToMainMenu:(id)sender{
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -74,11 +24,7 @@
 }
 - (void)dealloc
 {
-    [otherAddButton release];
-    [addButton release];
-    [removeButton release];
     [nutritionDetails release];
-    [dishDetails release];
     [super dealloc];
 }
 
@@ -94,31 +40,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     Grinnell_Menu_iOSAppDelegate *mainDelegate = (Grinnell_Menu_iOSAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (mainDelegate.calledVenues){
-        [self.navigationController popViewControllerAnimated:NO];
-        mainDelegate.calledVenues = NO;
-    }
-    
-    mainDelegate.selectedDish = NO;
-    if (fromTray) {
-        [self updateView];
-        fromTray = NO;
-    }
     Venue *venue = [mainDelegate.venues objectAtIndex:dishSection];
     Dish *dish = [venue.dishes objectAtIndex:dishRow];
-    dishDetails.text = dish.details;
     nutritionDetails.text = dish.nutrition;
     self.title = dish.name;
-    if ([mainDelegate.trayDishes containsObject:self.title]){
-        [removeButton setHidden:NO];
-        [addButton setHidden:NO];
-        [otherAddButton setHidden:YES];
-    }
-    else{
-        [removeButton setHidden:YES];
-        [addButton setHidden:YES];
-        [otherAddButton setHidden:NO];
-    }
     [super viewWillAppear:animated];
     
 }
